@@ -7,6 +7,7 @@ var signer = require("./signer");
 global.ENDPOINT = {
     'moderation': {
         'cn-north-1': 'moderation.cn-north-1.myhuaweicloud.com',
+        'cn-north-4': 'moderation.cn-north-4.myhuaweicloud.com',
         'ap-southeast-1': 'moderation.ap-southeast-1.myhuaweicloud.com'
     }
 };
