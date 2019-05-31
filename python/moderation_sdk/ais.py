@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 class AisEndpoint:
-    IAM_ENPOINT = 'iam.cn-north-1.myhuaweicloud.com'
+    IAM_ENPOINT = 'iam.myhuaweicloud.com'
 
 class ModerationURI:
     IMAGE_CLARITY_DETECT = '/v1.0/moderation/image/clarity-detect'
