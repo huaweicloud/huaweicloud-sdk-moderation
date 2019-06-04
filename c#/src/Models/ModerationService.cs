@@ -16,6 +16,7 @@ namespace Moderation.Models
         static ModerationService()
         {
             endPointsDic.Add("cn-north-1", "moderation.cn-north-1.myhuaweicloud.com");
+            endPointsDic.Add("cn-north-4", "moderation.cn-north-4.myhuaweicloud.com");
             endPointsDic.Add("ap-southeast-1", "moderation.ap-southeast-1.myhuaweicloud.com");
         }
 
