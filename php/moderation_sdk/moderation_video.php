@@ -30,16 +30,13 @@ function moderation_video($token, $url, $frame_interval, $category)
                 var_dump($resultobj);
             }
         }
-        // 任务处理失败，直接退出
-        if ($resultobj['result']['status'] == "failed") {
-            var_dump($resultobj);
 
-        } // 任务处理完毕
-        elseif ($resultobj['result']['status'] == "finish") {
+        if ($resultobj['result']['status'] == "failed" || $resultobj['result']['status'] == "finish") {
             return $resultobj;
-        } // 任务未完成处理，轮询请求接口处理
+        }
+        // 任务处理未完成，轮询继续请求接口
         else {
-            sleep(2);
+            sleep(5);
             continue;
         }
 
@@ -161,13 +158,10 @@ function moderation_video_aksk($_ak, $_sk, $url, $frame_interval, $category)
 
         }
 
-        if ($resultobj['result']['status'] == "failed") {
-            var_dump($resultobj);
-
-            // 任务处理成功，返回结果信息
-        } elseif ($resultobj['result']['status'] == "finish") {
+        if ($resultobj['result']['status'] == "failed" || $resultobj['result']['status'] == "finish") {
             return $resultobj;
-        } // 任务处理未完成，轮询继续请求接口
+        }
+        // 任务处理未完成，轮询继续请求接口
         else {
             sleep(5);
             continue;
