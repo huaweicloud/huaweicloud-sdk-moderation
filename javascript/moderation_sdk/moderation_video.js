@@ -62,42 +62,49 @@ function get_result(endPoint, job_id, resultsearch, token, retryTimes, callback)
     // 轮询请求视频审核接口，获取结果信息
     var reqsearch = https.request(options, function (res) {
         res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            resultsearch = JSON.parse(chunk);
-            if (res.statusCode !== 200) {
-                if(retryTimes < ais.RETRY_TIMES_MAX){
-                    retryTimes++;
-                    // 满足条件进行重试
-                    setTimeout(function () {
-                        get_result_aksk(endPoint, sign, job_id, resultsearch, retryTimes, callback);
-                    }, 2000);
-                    console.log('The processing job request failed, retrying');
-                }else {
-                    console.log('Http status code is: ' + response.statusCode);
-                    console.log(chunk.toString());
-                }
-                return;
-            }
 
-            // 如果处理失败，直接退出
-            if (resultsearch !== "" && resultsearch.result.status === "failed") {
-                console.log('The processing job request failed');
-                callback(JSON.stringify(resultsearch));
-                return;
-            }
-
-            // 任务处理成功
-            if (resultsearch !== "" && resultsearch.result.status === "finish") {
-                callback(JSON.stringify(resultsearch));
-            }
-            else {
-
-                // 如果没有返回，等待一段时间，继续进行轮询。
-                setTimeout(function () {
-                    get_result(endPoint, job_id, resultsearch, token, retryTimes, callback);
-                }, 2000);
-            }
+        // 拼接返回结果的base64的字符串
+        var resultStr = "";
+        res.on("data", function (chunk) {
+            resultStr += chunk.toString();
         });
+
+        res.on("end", function () {
+        resultsearch = JSON.parse(resultStr);
+        if (res.statusCode !== 200) {
+            if(retryTimes < ais.RETRY_TIMES_MAX){
+                retryTimes++;
+                // 满足条件进行重试
+                setTimeout(function () {
+                    get_result_aksk(endPoint, sign, job_id, resultsearch, retryTimes, callback);
+                }, 2000);
+                console.log('The processing job request failed, retrying');
+            }else {
+                console.log('Http status code is: ' + res.statusCode);
+                console.log(resultStr);
+            }
+            return;
+        }
+
+        // 如果处理失败，直接退出
+        if (resultsearch !== "" && resultsearch.result.status === "failed") {
+            console.log('The processing job request failed');
+            callback(JSON.stringify(resultsearch));
+            return;
+        }
+
+        // 任务处理成功
+        if (resultsearch !== "" && resultsearch.result.status === "finish") {
+            callback(JSON.stringify(resultsearch));
+        }
+        else {
+
+            // 如果没有返回，等待一段时间，继续进行轮询。
+            setTimeout(function () {
+                get_result(endPoint, job_id, resultsearch, token, retryTimes, callback);
+            }, 2000);
+        }
+        })
     });
 
     reqsearch.on('error', function (e) {
@@ -173,8 +180,15 @@ function get_result_aksk(endPoint, sign, job_id, resultsearch, retryTimes, callb
     var reqsearch = https.request(options, function (response) {
 
         response.setEncoding('utf8');
-        response.on('data', function (chunk) {
-            resultsearch = JSON.parse(chunk);
+
+        // 拼接返回结果的base64的字符串
+        var resultStr = "";
+        response.on("data", function (chunk) {
+            resultStr += chunk.toString();
+        });
+
+        response.on("end", function () {
+            resultsearch = JSON.parse(resultStr);
             if (response.statusCode !== 200) {
                 if(retryTimes < ais.RETRY_TIMES_MAX){
                     retryTimes++;

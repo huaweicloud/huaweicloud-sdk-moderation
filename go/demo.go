@@ -124,7 +124,7 @@ func Test_ModerationTextAkskDemo(ak string, sk string) {
 
 func Test_ModerationVideoAkskDemo(ak string, sk string) {
 
-	var frameInterval int = 5
+	var frameInterval int = 1
 	var categories = []string{"politics", "terrorism", "porn"}
 	// The OBS link should match the region, and the OBS resources of different regions are not shared
 	url := "https://obs-test-llg.obs.cn-north-1.myhuaweicloud.com/bgm_recognition"

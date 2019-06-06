@@ -17,7 +17,7 @@ demo_data_url = "https://obs-test-llg.obs.cn-north-1.myhuaweicloud.com/bgm_recog
 
 token.getToken(username, domain_name, password, function (token) {
 
-    video.video(token, demo_data_url, 5, ["terrorism", "porn", "politics"], function (result) {
+    video.video(token, demo_data_url, 1, ["terrorism", "porn", "politics"], function (result) {
         console.log(result);
     })
 

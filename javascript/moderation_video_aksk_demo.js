@@ -13,7 +13,7 @@ var app_secret = "************";
 // obs链接需要和region区域一致，不同的region的obs资源不共享
 demo_data_url = "https://obs-test-llg.obs.cn-north-1.myhuaweicloud.com/bgm_recognition";
 
-video.video_aksk(app_key, app_secret, demo_data_url, 5, ["terrorism", "porn", "politics"], function (result) {
+video.video_aksk(app_key, app_secret, demo_data_url, 1, ["terrorism", "porn", "politics"], function (result) {
     console.log(result)
 });
 
