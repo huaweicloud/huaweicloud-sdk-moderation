@@ -232,7 +232,7 @@ namespace ModerationDemo
             // The OBS link must match the region, and the OBS resources of different regions are not shared
             String url = "https://obs-test-llg.obs.cn-north-1.myhuaweicloud.com/bgm_recognition";
             // Frame time interval
-            int frame_interval = 5;             
+            int frame_interval = 1;             
 
             String reslut = ModerationService.VideoToken(token, url, frame_interval, categories, endpoint);
             Console.WriteLine(reslut);

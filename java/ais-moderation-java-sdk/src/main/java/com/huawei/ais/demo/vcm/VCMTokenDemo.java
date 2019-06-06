@@ -65,7 +65,7 @@ public class VCMTokenDemo {
 		// 设置必选参数
 		jobMetaInfo.setUrl(videoUrl);
 		// 设置可选参数
-		jobMetaInfo.setFrameInterval(5);
+		jobMetaInfo.setFrameInterval(1);
 		jobMetaInfo.addCategory(Category.POLITICS);
 		jobMetaInfo.addCategory(Category.TERRORISM);
 		jobMetaInfo.addCategory(Category.PORN);
