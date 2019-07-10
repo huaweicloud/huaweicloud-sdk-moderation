@@ -10,9 +10,6 @@ var ais = {
     // token请求uri
     AIS_TOKEN: '/v3/auth/tokens',
 
-    // 图像反黄检测服务uri
-    IMAGE_ANTI_PORN: '/v1.0/moderation/image/anti-porn',
-
     // 图像清晰度的检测服务uri
     IMAGE_CLARITY_DETECT: '/v1.0/moderation/image/clarity-detect',
 
