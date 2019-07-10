@@ -29,9 +29,6 @@ namespace ModerationDemo
             // clarity detect service example
             ClarityDetect(token, MODERATION_ENDPOINT);
 
-            // image anti porn service example
-            AntiPorn(token, MODERATION_ENDPOINT);
-
             // image content detect service example
             ImageContent(token, MODERATION_ENDPOINT);
 
@@ -111,25 +108,6 @@ namespace ModerationDemo
             }
             Console.ReadKey();
 
-        }
-
-        private static void AntiPorn(String token, String endpoint)
-        {
-            // The obs url of file
-            String dataUrl = "";    
-
-            // post data by native file
-            String data = utils.ConvertFileToBase64("../../data/moderation-antiporn.jpg");
-            String reslut = ModerationService.AntiPornToken(token, data, dataUrl, endpoint);
-            Console.WriteLine(reslut);
-
-            // The OBS link must match the region, and the OBS resources of different regions are not shared
-            dataUrl = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/antiporn.jpg";
-
-            // post data by obs url
-            reslut = ModerationService.AntiPornToken(token, "", dataUrl, endpoint);
-            Console.WriteLine(reslut);
-            Console.ReadKey();
         }
 
         private static void ImageContent(String token, String endpoint)

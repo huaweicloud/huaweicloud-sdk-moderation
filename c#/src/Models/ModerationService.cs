@@ -56,23 +56,6 @@ namespace Moderation.Models
 
         }
 
-        public static String AntiPornToken(String token, String image, String url, String endpoint)
-        {
-            // reuqest data for image anti porn
-            JObject requestBody = new JObject();
-            requestBody.Add("image", image);
-            requestBody.Add("url", url);
-
-            HttpWebRequest request = null;
-            String result = null;
-            String uri = new StringBuilder().Append("https://").Append(endpoint).Append(Ais.IMAGE_ANTI_PORN).ToString();
-
-            String serviceName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-
-            return utils.PostData(request, uri, token, requestBody, result, serviceName);
-
-        }
-
         public static String ImageContentToken(String token, String image, String url, float threshold, JArray categories, String endpoint)
         {
             // reuqest data for image content detect
