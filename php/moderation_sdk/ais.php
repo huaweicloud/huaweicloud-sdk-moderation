@@ -13,9 +13,6 @@ define("IAM_ENPOINT", "iam.myhuaweicloud.com");
 // token请求uri
 define("AIS_TOKEN", "/v3/auth/tokens");
 
-// 图像反黄检测服务uri
-define("IMAGE_ANTI_PORN", "/v1.0/moderation/image/anti-porn");
-
 // 图像清晰度的检测服务uri
 define("IMAGE_CLARITY_DETECT", "/v1.0/moderation/image/clarity-detect");
 
