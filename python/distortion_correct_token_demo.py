@@ -21,7 +21,7 @@ if __name__ == '__main__':
     token = get_token(user_name, password, account_name)
 
     #call interface use the url correction is true means do not correction
-    result = distortion_correct(token, "", demo_data_url, True)
+    result = distortion_correct(token, '', demo_data_url, True)
     result_obj = json.loads(result)
     if result_obj['result']['data'] !='':
         decode_to_wave_file(result_obj['result']['data'], 'data/modeation-distortion-token-1.png')

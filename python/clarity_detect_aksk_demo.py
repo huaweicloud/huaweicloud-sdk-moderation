@@ -16,7 +16,7 @@ if __name__ == '__main__':
     demo_data_url = 'https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/vat-invoice.jpg'
 
     # call interface use the url
-    result = clarity_detect_aksk(app_key, app_secret, "", demo_data_url, 0.8)
+    result = clarity_detect_aksk(app_key, app_secret, '', demo_data_url, 0.8)
     print(result)
 
     # call interface use the file
