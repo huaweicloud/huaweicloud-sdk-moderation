@@ -13,9 +13,6 @@ const (
 	// the uri for Service distortion correction
 	DISTORTION_CORRECTION string = "/v1.0/moderation/image/distortion-correct"
 
-	// the uri for Service image anti porn
-	IMAGE_ANTI_PORN string = "/v1.0/moderation/image/anti-porn"
-
 	// the uri for Service image content
 	IMAGE_MODERATION string = "/v1.0/moderation/image"
 

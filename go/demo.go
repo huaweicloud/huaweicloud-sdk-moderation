@@ -21,9 +21,6 @@ func main() {
 	// The sample for image distortion correct service
 	// Test_DistortionCorrectAkskDemo(ak, sk)
 
-	// The sample for image anti porn service
-	// Test_ImageAntiPornAkskDemo(ak, sk)
-
 	// The sample for image content detect service
 	// Test_ImageModerationAkskDemo(ak, sk)
 
@@ -68,19 +65,6 @@ func Test_DistortionCorrectAkskDemo(ak string, sk string) {
 	filepath := "data/modeation-distortion.jpg"
 	image := sdk.ChangeFileToBase64(filepath)
 	result = sdk.DistortionCorrectAksk(ak, sk, image, "", correction)
-	fmt.Println(result)
-}
-
-func Test_ImageAntiPornAkskDemo(ak string, sk string) {
-	// The OBS link should match the region, and the OBS resources of different regions are not shared
-	url := "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/antiporn.jpg"
-	result := sdk.ImageAntiPornAksk(ak, sk, "", url)
-	fmt.Println(result)
-
-	// post data by native file
-	filepath := "data/moderation-antiporn.jpg"
-	image := sdk.ChangeFileToBase64(filepath)
-	result = sdk.ImageAntiPornAksk(ak, sk, image, "")
 	fmt.Println(result)
 }
 
