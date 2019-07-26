@@ -118,31 +118,6 @@ public class TokenDemo {
 		
 		return json.toJSONString();
 	}
-
-	
-
-	/**
-	 * 图像反黄检测，使用Base64编码后的文件方式，使用Token认证方式访问服务
-	 * @param token 
-	 * 			token认证串
-	 * @param formFile 
-	 * 			文件路径
-	 * @throws IOException
-	 */
-	public static void requestModerationAntiPornBase64(String token, String formFile) throws IOException {
-		String url = ServiceAccessBuilder.getCurrentEndpoint(projectName)+"/v1.1/moderation/image/anti-porn";
-		Header[] headers = new Header[] {new BasicHeader("X-Auth-Token", token) ,new BasicHeader("Content-Type", "application/json")};
-		String requestBody=toBase64Str(formFile);
-		StringEntity stringEntity = new StringEntity(requestBody, "utf-8");
-		try {
-			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, connectionTimeout, connectionRequestTimeout, socketTimeout);
-			System.out.println(response);
-			String content = IOUtils.toString(response.getEntity().getContent());
-			System.out.println(content);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	
 	/**
 	 * 清晰度检测，使用Base64编码后的文件方式，使用Token认证方式访问服务
@@ -421,9 +396,6 @@ public class TokenDemo {
 		connectionTimeout = 5000; //连接目标url超时限制
 		connectionRequestTimeout = 1000;//连接池获取可用连接超时限制
 		socketTimeout = 5000;//获取服务器响应数据超时限制
-				
-		//运行图像反黄检测服务
-	    //requestModerationAntiPornBase64(token, "data/moderation-demo-1.jpg");
 		
 		//运行清晰度检测服务
 		//requestModerationClarityBase64(token, "data/moderation-demo-1.jpg");

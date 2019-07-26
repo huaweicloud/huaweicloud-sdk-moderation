@@ -2,6 +2,7 @@ package com.huawei.ais.demo.obs;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import com.huawei.ais.common.ProxyHostInfo;
 
@@ -164,6 +165,20 @@ public class SimpleObsClient {
         }
         System.out.println("upload file " + filePath + " successfully!\n");
         return new ObsFileHandle(bucketName, objectKey, this);
+    }
+
+    /**
+     * 上传文件到OBS中，并会放在指定的文件夹里（没有会创建），{bucket}/{folder}/file
+     *
+     * @param bucketName 桶名称
+     * @param inputPateh 文件夹名称
+     * @param inputStream   url的文件流
+     * @return OBS文件句柄
+     */
+    public ObsFileHandle uploadFile(String bucketName, String inputPateh, InputStream inputStream) {
+        obsClient.putObject(bucketName, inputPateh, inputStream);
+        System.out.println("upload file inputStream " + inputPateh + " successfully!\n");
+        return new ObsFileHandle(bucketName, inputPateh, this);
     }
 
     /**
