@@ -14,9 +14,6 @@ namespace Moderation.Models
         // the uri for Service distortion correction
         public static String DISTORTION_CORRECTION = "/v1.0/moderation/image/distortion-correct";
 
-        // the uri for Service image anti porn
-        public static String IMAGE_ANTI_PORN = "/v1.0/moderation/image/anti-porn";
-
         // the uri for Service image content
         public static String IMAGE_CONTENT = "/v1.0/moderation/image";
 
