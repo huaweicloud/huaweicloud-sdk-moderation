@@ -19,9 +19,12 @@ import com.cloud.sdk.http.HttpMethodName;
 import com.huawei.ais.auth.AccessServiceImpl;
 import com.huawei.ais.common.AuthInfo;
 import com.huawei.ais.sdk.util.HttpClientUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AisAccess extends AccessServiceImpl{
 
+	private static final Logger logger = LoggerFactory.getLogger(AisAccess.class);
 	/**
 	 * 服务名
 	 */
@@ -30,20 +33,22 @@ public class AisAccess extends AccessServiceImpl{
 	public int connectionTimeout = HttpClientUtils.DEFAULT_CONNECTION_TIMEOUT;
 	public int connectionRequestTimeout = HttpClientUtils.DEFAULT_CONNECTION_REQUEST_TIMEOUT;
 	public int socketTimeout =  HttpClientUtils.DEFAULT_SOCKET_TIMEOUT;
-	
+	public int retryTimes =HttpClientUtils.DEFAULT_RETRY_TIMES;
+	public int DEFAULT_MAX_REQUEST_TIME = 10000;
 	
 	public AisAccess(AuthInfo authInfo) {
 		super(AisAccess.SERVICE_NAME, authInfo.getRegion(), authInfo.getAk(), authInfo.getSk());
 		this.authInfo = authInfo;
 	}
 	
-	public AisAccess(AuthInfo authInfo, int connectionTimeout, int connectionRequestTimeout, int socketTimeout) {
+	public AisAccess(AuthInfo authInfo, int connectionTimeout, int connectionRequestTimeout, int socketTimeout, int retryTimes) {
 		super(AisAccess.SERVICE_NAME, authInfo.getRegion(), authInfo.getAk(), authInfo.getSk());
 		this.authInfo = authInfo;
 		
 		this.connectionTimeout = connectionTimeout;
 		this.connectionRequestTimeout = connectionRequestTimeout;
 		this.socketTimeout = socketTimeout;
+		this.retryTimes = retryTimes;
 		
 	}
 	
@@ -66,15 +71,36 @@ public class AisAccess extends AccessServiceImpl{
 	public HttpResponse put(String requestUrl, String putBody) {
 
 		HttpResponse response = null;
-		try {
-			URL url = new URL(generateWholeUrl(authInfo.getEndPoint(), requestUrl));
-			HttpMethodName httpMethod = HttpMethodName.PUT;
 
-			InputStream content = new ByteArrayInputStream(putBody.getBytes());
-			response = access(url, content, (long) putBody.getBytes().length, httpMethod);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+		Long startTime = System.currentTimeMillis();
+		int retries =0;
+		while (retries <= retryTimes){
+			try {
+				Long requestTime = System.currentTimeMillis();
+				if ((requestTime-startTime) > DEFAULT_MAX_REQUEST_TIME){
+					logger.error("Failure to process request, time used {},The request time has exceeded the maximum limit", (requestTime-startTime));
+					break;
+				}
+
+				URL url = new URL(generateWholeUrl(authInfo.getEndPoint(), requestUrl));
+				HttpMethodName httpMethod = HttpMethodName.PUT;
+
+				InputStream content = new ByteArrayInputStream(putBody.getBytes());
+				response = access(url, content, (long) putBody.getBytes().length, httpMethod);
+				break;
+			} catch (Exception e) {
+				if (retries < retryTimes) {
+					if (retries < 1){
+						logger.error("Failure to process request, request body {}, cause by:", putBody, retries, e);
+					}else {
+						logger.error("Failure to process request,  request body {}, retry time {}, cause by:", putBody, retries, e);
+					}
+				} else {
+					logger.error("Failure to process request,  request body {}, the number of retries has been used up cause by:", putBody, e);
+				}
+			}finally {
+				retries++;
+			}
 		}
 		return response;
 	}
@@ -82,14 +108,34 @@ public class AisAccess extends AccessServiceImpl{
 	public HttpResponse get(String requestUrl) {
 
 		HttpResponse response = null;
-		try {
-			URL url = new URL(generateWholeUrl(authInfo.getEndPoint(), requestUrl));
-			HttpMethodName httpMethod = HttpMethodName.GET;
-			response = access(url, httpMethod);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+
+		Long startTime = System.currentTimeMillis();
+		int retries =0;
+		while (retries <= retryTimes){
+			try {
+				Long requestTime = System.currentTimeMillis();
+				if ((requestTime-startTime) > DEFAULT_MAX_REQUEST_TIME){
+					logger.error("Failure to process request, time used {},The request time has exceeded the maximum limit", (requestTime-startTime));
+					break;
+				}
+
+				URL url = new URL(generateWholeUrl(authInfo.getEndPoint(), requestUrl));
+				HttpMethodName httpMethod = HttpMethodName.GET;
+				response = access(url, httpMethod);
+				break;
+			} catch (Exception e) {
+				if (retries < retryTimes) {
+					if (retries < 1){
+						logger.error("Failure to process request, url {}, cause by:", requestUrl, retries, e);
+					}else {
+						logger.error("Failure to process request, url {}, retry time {}, cause by:", requestUrl, retries, e);
+					}
+				} else {
+					logger.error("Failure to process request, url {}, the number of retries has been used up cause by:", requestUrl, e);
+				}
+			}finally {
+				retries++;
+			}
 		}
 		return response;
 	}
@@ -100,7 +146,7 @@ public class AisAccess extends AccessServiceImpl{
 		try {
 			url = new URL(generateWholeUrl(authInfo.getEndPoint(), requestUrl));
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			logger.error("Handling url information failed, url {}, cause by:", requestUrl, e);
 		}
 		InputStream content = new ByteArrayInputStream(postbody.getBytes());
 		HttpMethodName httpMethod = HttpMethodName.POST;
@@ -108,11 +154,32 @@ public class AisAccess extends AccessServiceImpl{
 
 		Map<String, String> header = new HashMap<String, String>();
 		header.put("Content-Type", ContentType.APPLICATION_JSON.toString());
-		try {
-			response = access(url, header, content, (long) postbody.getBytes().length, httpMethod);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+
+		Long startTime = System.currentTimeMillis();
+		int retries =0;
+		while (retries <= retryTimes){
+			try {
+				Long requestTime = System.currentTimeMillis();
+				if ((requestTime-startTime) > DEFAULT_MAX_REQUEST_TIME){
+					logger.error("Failure to process request, time used {},the request time has exceeded the maximum limit", (requestTime-startTime));
+					break;
+				}
+
+				response = access(url, header, content, (long) postbody.getBytes().length, httpMethod);
+				break;
+			} catch (Exception e) {
+				if (retries <= retryTimes) {
+					if (retries < 1){
+						logger.error("Failure to process request, request body {}, cause by:", postbody, e);
+					}else {
+						logger.error("Failure to process request, request body {}, retry time {}, cause by:", postbody, retries, e);;
+					}
+				} else {
+					logger.error("Failure to process request, request body {}, the number of retries has been used up cause by:", postbody, e);
+				}
+			}finally {
+				retries++;
+			}
 		}
 		return response;
 	}
@@ -123,19 +190,39 @@ public class AisAccess extends AccessServiceImpl{
 		try {
 			url = new URL(generateWholeUrl(authInfo.getEndPoint(), requestUrl));
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			logger.error("Failure to process request, url {}, cause by:", requestUrl, e);
 		}
 		HttpMethodName httpMethod = HttpMethodName.POST;
 		HttpResponse response = null;
 
 		Map<String, String> header = new HashMap<String, String>();
 		header.put("Content-Type", ContentType.APPLICATION_JSON.toString());
-		try {
-			response = accessEntity(url, header, entity, (long) entity.getContentLength(), httpMethod);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		} finally {
+
+		Long startTime = System.currentTimeMillis();
+		int retries =0;
+		while (retries <= retryTimes){
+			try {
+				Long requestTime = System.currentTimeMillis();
+				if ((requestTime-startTime) > DEFAULT_MAX_REQUEST_TIME){
+					logger.error("Failure to process request, time used {},The request time has exceeded the maximum limit", (requestTime-startTime));
+					break;
+				}
+
+				response = accessEntity(url, header, entity, (long) entity.getContentLength(), httpMethod);
+				break;
+			} catch (Exception e) {
+				 if (retries < retryTimes){
+					 if (retries < 1){
+						 logger.error("Failure to process request, request body {}, cause by:", entity, e);
+					 }else {
+						 logger.error("Failure to process request, request body {}, retry time {}, cause by:", entity, retries, e);
+					 }
+				 }else{
+					 logger.error("Failure to process request, request body {}, the number of retries has been used up cause by:", entity, e);
+				 }
+			}finally {
+				retries++;
+			}
 		}
 		return response;
 	}
