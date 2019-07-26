@@ -19,7 +19,7 @@ if __name__ == '__main__':
     token = get_token(user_name, password, account_name)
 
     # call interface use the url
-    result = clarity_detect(token, "", demo_data_url, 0.8)
+    result = clarity_detect(token, '', demo_data_url, 0.8)
     print(result)
 
     # call interface use the file

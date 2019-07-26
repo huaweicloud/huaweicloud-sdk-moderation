@@ -14,7 +14,7 @@ def distortion_correct(token, image, url, correction=True):
     _url = 'https://%s/v1.0/moderation/image/distortion-correct' % endpoint
 
     if sys.version_info.major >= 3:
-        if image != '':
+        if image:
             image = image.decode("utf-8")
 
     _data = {
@@ -42,7 +42,7 @@ def distortion_correct_aksk(_ak, _sk, image, url, correction=True):
     sig.AppSecret = _sk
 
     if sys.version_info.major >= 3:
-        if image != '':
+        if image:
             image = image.decode("utf-8")
 
     _data = {

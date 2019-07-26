@@ -14,7 +14,7 @@ def moderation_image(token, image, url, categories=None, threshold=None):
     _url = 'https://%s/v1.0/moderation/image' % endpoint
 
     if sys.version_info.major >= 3:
-        if image != '':
+        if image:
             image = image.decode("utf-8")
 
     _data = {
@@ -43,7 +43,7 @@ def moderation_image_aksk(_ak, _sk, image, url, categories=None, threshold=None)
     sig.AppSecret = _sk
 
     if sys.version_info.major >= 3:
-        if image != '':
+        if image:
             image = image.decode("utf-8")
 
     _data = {

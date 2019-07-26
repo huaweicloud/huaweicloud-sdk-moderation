@@ -14,7 +14,7 @@ def clarity_detect(token, image, url, threshold=0.8):
     _url = 'https://%s/v1.0/moderation/image/clarity-detect' % endpoint
 
     if sys.version_info.major >= 3:
-        if image != '':
+        if image:
             image = image.decode("utf-8")
 
     _data = {
@@ -41,7 +41,7 @@ def clarity_detect_aksk(_ak, _sk, image, url, threshold=0.8):
     sig.AppSecret = _sk
 
     if sys.version_info.major >= 3:
-        if image != '':
+        if image:
             image = image.decode("utf-8")
 
     _data = {
