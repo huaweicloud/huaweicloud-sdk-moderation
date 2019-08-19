@@ -11,28 +11,34 @@ function moderation_video($token, $url, $frame_interval, $category)
     $endPoint = get_endpoint(MODERATION);
     // 获取任务信息
     $jobResult = _moderation_video($endPoint, $token, $url, $frame_interval, $category);
-    $jobResultObj = json_decode($jobResult, true);
-    $job_id = $jobResultObj['result']['job_id'];
-    echo "Process job id is :" . $job_id;
+
+    // 验证服务调用返回的状态是否成功，如果为2xx, 为成功, 否则失败。
+    if (!status_success($jobResult['status'])) {
+        echo "The http status code for get jobId request failure: " . $jobResult['status'] . "\n";
+        return $jobResult;
+    }
+
+    $jobId = $jobResult['result']['job_id'];
+    echo "Process job id is :" . $jobId . "\n";
 
     $retryTimes = 0;
     while (true) {
 
         // 获取任务解析的结果
-        $resultobj = get_result($endPoint, $token, $job_id);
-        if (!status_success($resultobj['status'])) {
+        $resultObj = get_result($endPoint, $token, $jobId);
+        if (!status_success($resultObj['status'])) {
             // 如果查询次数小于最大次数，进行重试
             if($retryTimes < RETRY_MAX_TIMES){
                 $retryTimes++;
                 sleep(2);
                 continue;
             }else{
-                var_dump($resultobj);
+                return $resultObj;
             }
         }
 
-        if ($resultobj['result']['status'] == "failed" || $resultobj['result']['status'] == "finish") {
-            return $resultobj;
+        if ($resultObj['result']['status'] == "failed" || $resultObj['result']['status'] == "finish") {
+            return $resultObj;
         }
         // 任务处理未完成，轮询继续请求接口
         else {
@@ -76,15 +82,9 @@ function _moderation_video($endPoint, $token, $url, $frame_interval, $category)
     if ($status == 0) {
         echo curl_error($curl);
     } else {
-
-        // 验证服务调用返回的状态是否成功，如果为2xx, 为成功, 否则失败。
-        if (status_success($status)) {
-            return $response;
-        } else {
-            echo "The http status code for get jobId request failure: " . $status . "\n";
-            echo $response;
-        }
-
+        $response = json_decode($response, true);
+        $response['status'] = $status;
+        return $response;
     }
     curl_close($curl);
 }
@@ -92,11 +92,11 @@ function _moderation_video($endPoint, $token, $url, $frame_interval, $category)
 /**
  * 获取结果值
  * @param $token
- * @param $job_id
+ * @param $jobId
  */
-function get_result($endPoint, $token, $job_id)
+function get_result($endPoint, $token, $jobId)
 {
-    $url = "https://" . $endPoint . MODERATION_VIDEO . "?job_id=" . $job_id;
+    $url = "https://" . $endPoint . MODERATION_VIDEO . "?job_id=" . $jobId;
 
     $headers = array(
         "Content-Type:application/json",
@@ -136,30 +136,36 @@ function moderation_video_aksk($_ak, $_sk, $url, $frame_interval, $category)
     $endPoint = get_endpoint(MODERATION);
 
     $jobResult = _moderation_video_aksk($endPoint, $signer, $url, $frame_interval, $category);
-    $jobResultObj = json_decode($jobResult, true);
-    $job_id = $jobResultObj['result']['job_id'];
-    echo "Process job id is :" . $job_id;
+
+    // 验证服务调用返回的状态是否成功，如果为2xx, 为成功, 否则失败。
+    if (!status_success($jobResult['status'])) {
+        echo "The http status code for get jobId request failure:" . $jobResult['status'] . "\n";
+        return $jobResult;
+    }
+
+    $jobId = $jobResult['result']['job_id'];
+    echo "Process job id is :" . $jobId . "\n";
 
     $retryTimes = 0;
     while (true) {
 
         // 获取任务的执行结果
-        $resultobj = get_result_aksk($endPoint, $signer, $job_id);
+        $resultObj = get_result_aksk($endPoint, $signer, $jobId);
 
-        if (!status_success($resultobj['status'])) {
+        if (!status_success($resultObj['status'])) {
             // 如果查询次数小于最大次数，进行重试
             if($retryTimes < RETRY_MAX_TIMES){
                 $retryTimes++;
                 sleep(2);
                 continue;
             }else{
-                var_dump($resultobj);
+                return $resultObj;
             }
 
         }
 
-        if ($resultobj['result']['status'] == "failed" || $resultobj['result']['status'] == "finish") {
-            return $resultobj;
+        if ($resultObj['result']['status'] == "failed" || $resultObj['result']['status'] == "finish") {
+            return $resultObj;
         }
         // 任务处理未完成，轮询继续请求接口
         else {
@@ -201,14 +207,9 @@ function _moderation_video_aksk($endPoint, $signer, $url, $frame_interval, $cate
         echo curl_error($curl);
     } else {
 
-        // 验证服务调用返回的状态是否成功，如果为2xx, 为成功, 否则失败。
-        if (status_success($status)) {
-            return $response;
-        } else {
-            echo "The http status code for get jobId request failure:" . $status . "\n";
-            echo $response;
-        }
-
+        $response = json_decode($response, true);
+        $response['status'] = $status;
+        return $response;
     }
     curl_close($curl);
 }
@@ -217,9 +218,9 @@ function _moderation_video_aksk($endPoint, $signer, $url, $frame_interval, $cate
 /**
  * 获取结果值
  * @param $token
- * @param $job_id
+ * @param $jobId
  */
-function get_result_aksk($endPoint, $signer, $job_id)
+function get_result_aksk($endPoint, $signer, $jobId)
 {
 
     $req = new Request();
@@ -228,7 +229,7 @@ function get_result_aksk($endPoint, $signer, $job_id)
     $req->host = $endPoint;
     $req->uri = MODERATION_VIDEO;
     $req->query = array(
-        'job_id' => $job_id
+        'job_id' => $jobId
     );
     $req->headers = array(
         'Content-Type' => 'application/json'
