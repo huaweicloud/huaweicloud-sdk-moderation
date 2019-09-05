@@ -50,7 +50,7 @@ public class VCMAkskDemo {
 			// 2.构建访问视频审核服务需要的参数
 			//
 			//obs桶名, 根据需要自定即可
-			String bucketName = "vcm-sdk-test";
+			String bucketName = "moderation-vcm-sdk";
 
 			//如果目标桶已存在，则不需要执行创建桶的动作
 			simpleObsClient.createBucket(bucketName);
