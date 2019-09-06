@@ -25,7 +25,7 @@ import com.huawei.ais.sdk.util.HttpClientUtils;
  */
 public class VCMTokenDemo {
 
-	private static final String REGION = "cn-north-1"; // 此处，请输入服务的区域信息，目前支持华北-北京(cn-north-1、cn-north-4)以及亚太-香港(ap-southeast-1)
+	private static final String REGION = "cn-north-4"; // 此处，请输入服务的区域信息，目前支持华北-北京(cn-north-4)以及亚太-香港(ap-southeast-1)
 	private static final String AIS_ENDPOINT = ServiceAccessBuilder.getCurrentEndpoint(REGION);
 	private static final String IAM_ENDPOINT = "https://iam." + REGION + ".myhuaweicloud.com";
 
@@ -48,12 +48,12 @@ public class VCMTokenDemo {
 		String username = "zhangshan";    // 用户名
 		String domainName = "MyCompany";  // 账户名，参考地址：https://console.huaweicloud.com/iam/#/myCredential
 		String password = "*******";      // 对应用户名的密码
-		String regionName = "cn-north-1"; // 服务的区域信息，参考地址: http://developer.huaweicloud.com/dev/endpoint
+		String regionName = "cn-north-4"; // 服务的区域信息，参考地址: http://developer.huaweicloud.com/dev/endpoint
 
 		String token = getToken(username, domainName, password, regionName);
 
 		// 2. 准备好视频文件的OBS地址，公共读状态，或者临时授权下载状态
-		String videoUrl = "https://ais-sample-data.obs.cn-north-1.myhwclouds.com/news.mp4";
+		String videoUrl = "https://obs-image-bj4.obs.cn-north-4.myhuaweicloud.com/video_moderation.mp4";
 
 		// 3. 调用视频审核服务
 		callVCMService(token, videoUrl);
