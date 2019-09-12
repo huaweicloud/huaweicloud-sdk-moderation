@@ -4,8 +4,8 @@ from moderation_sdk.image_moderation_batch import image_content_batch
 from moderation_sdk.utils import init_global_env
 
 if __name__ == '__main__':
-    # Services currently support North China-Beijing(cn-north-1,cn-north-4), Asia Pacific-Hong Kong(ap-southeast-1)
-    init_global_env('cn-north-1')
+    # Services currently support North China-Beijing(cn-north-4), Asia Pacific-Hong Kong(ap-southeast-1)
+    init_global_env('cn-north-4')
     #
     # access moderation image of batch jobs,post data by token
     #
