@@ -5,8 +5,8 @@ var clarity = require("./moderation_sdk/clarity_detect");
 var token = require("./moderation_sdk/gettoken");
 var utils = require("./moderation_sdk/utils");
 
-// 初始化服务的区域信息，目前支持华北-北京(cn-north-1)区域信息
-utils.initRegion("cn-north-1");
+// 初始化服务的区域信息，目前支持华北-北京(cn-north-4)区域信息
+utils.initRegion("cn-north-4");
 
 var username = "*******";        // 配置用户名
 var domain_name = "*******";     // 配置用户名
