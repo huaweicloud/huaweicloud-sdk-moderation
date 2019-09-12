@@ -4,8 +4,8 @@ from moderation_sdk.clarity_detect import clarity_detect_aksk
 from moderation_sdk.utils import init_global_env
 
 if __name__ == '__main__':
-    # Services currently support North China-Beijing(cn-north-1)
-    init_global_env('cn-north-1')
+    # Services currently support North China-Beijing(cn-north-4)
+    init_global_env('cn-north-4')
 
     #
     # access moderation detect,post data by ak,sk
