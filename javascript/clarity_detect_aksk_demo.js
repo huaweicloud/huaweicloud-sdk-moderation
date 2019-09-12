@@ -4,8 +4,8 @@
 var clarity = require("./moderation_sdk/clarity_detect");
 var utils = require("./moderation_sdk/utils");
 
-// 初始化服务的区域信息，目前支持华北-北京(cn-north-1)区域信息
-utils.initRegion("cn-north-1");
+// 初始化服务的区域信息，目前支持华北-北京(cn-north-4)区域信息
+utils.initRegion("cn-north-4");
 
 var app_key = "*************";
 var app_secret = "************";
