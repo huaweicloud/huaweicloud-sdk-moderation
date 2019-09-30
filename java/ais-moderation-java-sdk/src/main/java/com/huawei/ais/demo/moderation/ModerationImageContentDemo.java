@@ -75,21 +75,38 @@ public class ModerationImageContentDemo {
 			service.close();
 		}
 	}
-	
-	public byte[] downloadUrl(String url) throws MalformedURLException, IOException {
-		InputStream in = new URL(url).openStream();
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		
-		byte[] buffer = new byte[128];
-		int n = in.read(buffer);
-		while (n != -1) {
-			out.write(buffer, 0, n);
-			n = in.read(buffer);
+
+	private void imageContentCheck(String url) throws IOException {
+		try {
+			//
+			// 2.构建访问图像内容检测服务需要的参数
+			//
+			String uri = "/v1.0/moderation/image";
+
+			JSONObject json = new JSONObject();
+
+			json.put("url", url);
+			json.put("categories", new String[] {"politics"}); //检测内容
+			json.put("threshold", 0);
+
+			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
+
+			// 3.传入图像内容检测服务对应的uri参数, 传入图像内容检测服务需要的参数，
+			// 该参数主要通过JSON对象的方式传入, 使用POST方法调用服务
+			HttpResponse response = service.post(uri, stringEntity);
+
+			// 4.验证服务调用返回的状态是否成功，如果为200, 为成功, 否则失败。
+			ResponseProcessUtils.processResponseStatus(response);
+
+			// 5.处理服务返回的字符流，输出识别结果。
+			ResponseProcessUtils.processResponse(response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			// 6.使用完毕，关闭服务的客户端连接
+			service.close();
 		}
-		in.close();
-		out.close();
-		
-		return out.toByteArray();
 	}
 
 	//
@@ -97,10 +114,9 @@ public class ModerationImageContentDemo {
 	//
 	public static void main(String[] args) throws IOException {
 		ModerationImageContentDemo tool = new ModerationImageContentDemo();
-		byte[] imageBytes = tool.downloadUrl("https://obs-ch-sdk-sample.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg");
-		tool.imageContentCheck(imageBytes);
+		tool.imageContentCheck("https://obs-ch-sdk-sample.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg");
 
-		imageBytes = FileUtils.readFileToByteArray(new File("data/moderation-demo-1.jpg"));
+		byte[] imageBytes = FileUtils.readFileToByteArray(new File("data/moderation-demo-1.jpg"));
 		tool.imageContentCheck(imageBytes);
 	}
 }
