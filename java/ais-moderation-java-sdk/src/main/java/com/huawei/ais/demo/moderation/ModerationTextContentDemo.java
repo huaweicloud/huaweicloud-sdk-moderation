@@ -45,7 +45,7 @@ public class ModerationTextContentDemo {
 			String uri = "/v1.0/moderation/text";
 			
 			JSONObject json = new JSONObject();
-			json.put("categories", new String[] {"porn","politics"}); //检测内容
+			json.put("categories", new String[] {"porn","politics", "ad", "abuse", "contraband", "flood"}); //检测内容
 
 			JSONObject text = new JSONObject();
 			text.put("text", "luo聊请+我，微信110");

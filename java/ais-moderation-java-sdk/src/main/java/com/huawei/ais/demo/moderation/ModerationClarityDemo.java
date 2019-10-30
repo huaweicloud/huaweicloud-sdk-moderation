@@ -43,7 +43,7 @@ public class ModerationClarityDemo {
 
 			JSONObject json = new JSONObject();
 			json.put("image", fileBase64Str); //检测图片
-			json.put("threshold", "0.8"); //判断是否清晰的阈值
+			json.put("threshold", 0.8); //判断是否清晰的阈值
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
 
 			// 3.传入清晰度检测服务对应的uri参数, 传入清晰度检测服务需要的参数，

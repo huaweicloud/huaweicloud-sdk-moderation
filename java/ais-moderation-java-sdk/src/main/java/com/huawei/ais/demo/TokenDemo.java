@@ -196,7 +196,7 @@ public class TokenDemo {
 		Header[] headers = new Header[] {new BasicHeader("X-Auth-Token", token) ,new BasicHeader("Content-Type", ContentType.APPLICATION_JSON.toString())};
 		try {
 			JSONObject json = new JSONObject();
-			json.put("categories", new String[] {"porn","politics"}); 
+			json.put("categories", new String[] {"porn","politics", "ad", "abuse", "contraband", "flood"});
 			
 			JSONObject text = new JSONObject();
 			text.put("text", textModeration);
@@ -233,7 +233,7 @@ public class TokenDemo {
 			String fileBase64Str = Base64.encodeBase64String(fileData);
 			JSONObject json = new JSONObject();
 			json.put("image", fileBase64Str);
-			json.put("categories", new String[] {"politics", "ad"}); //检测内容
+			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); //检测内容
 			json.put("threshold", 0);
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
 			
@@ -293,7 +293,7 @@ public class TokenDemo {
 		try {
 			JSONObject json = new JSONObject();
 			json.put("urls", urls);
-			json.put("categories", new String[] {"politics"}); //检测内容
+			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); //检测内容
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
 
 			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, connectionTimeout, connectionRequestTimeout, socketTimeout);
@@ -416,7 +416,6 @@ public class TokenDemo {
 
 		//运行图像内容检测批量服务
 		//requestModerationImageContentBatch(token, new String[]{url1,url2});
-				
 	}
 
 }
