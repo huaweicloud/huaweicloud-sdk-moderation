@@ -10,7 +10,7 @@ import moderation_sdk.signer as signer
 # access moderation text enhance,posy data by token
 #
 def moderation_text(token, text, type='content',
-                    categories=["ad", "politics", "porn", "abuse", "contraband", "flood"]):
+                    categories=['ad', 'politics', 'porn', 'abuse', 'contraband', 'flood']):
     endpoint = utils.get_endpoint(ais.AisService.MODERATION_SERVICE)
     _url = 'https://%s/v1.0/moderation/text' % endpoint
 
@@ -32,7 +32,7 @@ def moderation_text(token, text, type='content',
 # access moderation text enhance,posy data by ak,sk
 #
 def moderation_text_aksk(_ak, _sk, text, type='content',
-                         categories=["ad", "politics", "porn", "abuse", "contraband", "flood"]):
+                         categories=['ad', 'politics', 'porn', 'abuse', 'contraband', 'flood']):
     endpoint = utils.get_endpoint(ais.AisService.MODERATION_SERVICE)
     _url = 'https://%s/v1.0/moderation/text' % endpoint
 

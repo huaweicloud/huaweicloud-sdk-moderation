@@ -17,5 +17,6 @@ if __name__ == '__main__':
     token = get_token(user_name, password, account_name)
 
     # call interface use the text
-    result = moderation_text(token, '666666luo聊请+110亚砷酸钾六位qq，fuck666666666666666', 'content')
+    result = moderation_text(token, '666666luo聊请+110亚砷酸钾六位qq，fuck666666666666666', 'content',
+                             ['ad', 'politics', 'porn', 'abuse', 'contraband', 'flood'])
     print(result)

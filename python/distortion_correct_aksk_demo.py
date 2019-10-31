@@ -20,6 +20,9 @@ if __name__ == '__main__':
     #call interface use the url correction is true means do not correction
     result = distortion_correct_aksk(app_key, app_secret, '', demo_data_url, True)
     result_obj = json.loads(result)
+
+    # If the image needs to be corrected, the corrected image will be generated in the data directory,
+    # otherwise the processing result will be printed.
     if result_obj['result']['data'] != '':
         decode_to_wave_file(result_obj['result']['data'], 'data/modeation-distortion-aksk-1.png')
     else:
@@ -27,6 +30,9 @@ if __name__ == '__main__':
 
     # call interface use the file
     result = distortion_correct_aksk(app_key, app_secret, encode_to_base64('data/modeation-distortion.jpg'), '', True)
+    result_obj = json.loads(result)
+    # If the image needs to be corrected, the corrected image will be generated in the data directory,
+    # otherwise the processing result will be printed.
     if result_obj['result']['data'] != '':
         decode_to_wave_file(result_obj['result']['data'], 'data/modeation-distortion-aksk-2.png')
     else:

@@ -13,5 +13,6 @@ if __name__ == '__main__':
     app_secret = '************'
 
     # call interface use the text
-    result = moderation_text_aksk(app_key, app_secret, '666666luo聊请+110亚砷酸钾六位qq，fuck666666666666666', 'content')
+    result = moderation_text_aksk(app_key, app_secret, '666666luo聊请+110亚砷酸钾六位qq，fuck666666666666666', 'content',
+                                  ['ad', 'politics', 'porn', 'abuse', 'contraband', 'flood'])
     print(result)

@@ -16,11 +16,12 @@ if __name__ == '__main__':
     demo_data_url = 'https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg'
 
     # call interface use the local file
-    result = moderation_image_aksk(app_key, app_secret, encode_to_base64('data/moderation-terrorism.jpg'), '', ['politics','terrorism'], "")
+    result = moderation_image_aksk(app_key, app_secret, encode_to_base64('data/moderation-terrorism.jpg'), '',
+                                   ['porn', 'politics', 'terrorism', 'ad'], '')
     print(result)
 
     # call interface use the url
-    result = moderation_image_aksk(app_key, app_secret, "", demo_data_url, ['politics','terrorism'], '')
+    result = moderation_image_aksk(app_key, app_secret, "", demo_data_url, ['porn', 'politics', 'terrorism', 'ad'], '')
     print(result)
 
 

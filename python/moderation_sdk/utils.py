@@ -25,7 +25,7 @@ if sys.version_info.major < 3:
             # the client CA-validation have some problem, so we must do this.
             #
             _context = ssl._create_unverified_context()
-            r = urllib2.urlopen(kreq, context=_context)
+            r = urllib2.urlopen(kreq, context=_context, timeout=5)
 
         #
         # We use HTTPError and URLError，because urllib2 can't process the 4XX &
@@ -57,7 +57,7 @@ if sys.version_info.major < 3:
             # the client CA-validation have some problem, so we must do this.
             #
             _context = ssl._create_unverified_context()
-            r = urllib2.urlopen(kreq, context=_context)
+            r = urllib2.urlopen(kreq, context=_context, timeout=5)
 
             #
             # We use HTTPError and URLError，because urllib2 can't process the 4XX &
@@ -87,7 +87,7 @@ if sys.version_info.major < 3:
             #
             _context = ssl._create_unverified_context()
             req = urllib2.Request(url=_url, data=kreq.body, headers=kreq.headers)
-            r = urllib2.urlopen(req, context=_context)
+            r = urllib2.urlopen(req, context=_context, timeout=5)
         #
         # We use HTTPError and URLError，because urllib2 can't process the 4XX &
         # 500 error in the single urlopen function.
@@ -117,7 +117,7 @@ if sys.version_info.major < 3:
             #
             _context = ssl._create_unverified_context()
             req = urllib2.Request(url=_url, headers=kreq.headers)
-            r = urllib2.urlopen(req, context=_context)
+            r = urllib2.urlopen(req, context=_context, timeout=5)
 
         #
         # We use HTTPError and URLError，because urllib2 can't process the 4XX &
@@ -140,8 +140,11 @@ if sys.version_info.major < 3:
         return base64.b64encode(urllib.urlopen(url).read())
 else:
     import urllib.parse
+    import socket
     import urllib.request
     from urllib.error import URLError, HTTPError
+
+    socket.setdefaulttimeout(5)
 
     def request_token(_url, _data, token):
         _headers = {

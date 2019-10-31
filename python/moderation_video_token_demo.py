@@ -18,5 +18,5 @@ if __name__ == '__main__':
     token = get_token(user_name, password, account_name)
 
     # call interface use the url
-    result = moderation_video(token, demo_data_url, 1)
+    result = moderation_video(token, demo_data_url, 1, ['porn', 'politics', 'terrorism'])
     print(result)
