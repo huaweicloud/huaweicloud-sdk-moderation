@@ -54,8 +54,8 @@ public class ModerationImageContentBatchJobsDemo {
 			String url2 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/antiporn.jpg";
 
 			JSONObject json = new JSONObject();
-			json.put("urls", new String[] {url1,url2}); 					//检测的obs对象数组，可自行添加
-			json.put("categories", new String[] {"porn","politics"}); 		//检测场景
+			json.put("urls", new String[] {url1,url2});		//检测的obs对象数组，可自行添加
+			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); 		//检测场景
 
 			// 3.传入图像内容异步批量检测服务对应的uri参数, 以及其他需要参数
 			// 该参数主要通过JSON对象的方式传入, 使用POST方法调用服务

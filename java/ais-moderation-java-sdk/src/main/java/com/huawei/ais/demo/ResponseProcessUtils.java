@@ -5,11 +5,14 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+import com.cloud.sdk.util.StringUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Decoder;
 import com.huawei.ais.sdk.util.HttpClientUtils;
 
@@ -17,7 +20,7 @@ import com.huawei.ais.sdk.util.HttpClientUtils;
  * 访问服务返回结果信息验证的工具类
  */
 public class ResponseProcessUtils {
-	
+	private static final Logger logger = LoggerFactory.getLogger(ResponseProcessUtils.class);
 	/**
 	 * 打印出服务访问完成的HTTP状态码 
 	 * 
@@ -64,9 +67,13 @@ public class ResponseProcessUtils {
 		JSONObject resp = JSON.parseObject(result);
 		JSONObject responseRlt = (JSONObject) resp.get("result");
 		String imageString = (String)responseRlt.get("data");
-		
-		byte[] fileBytes = new BASE64Decoder().decodeBuffer(imageString);
-		writeBytesToFile(fileName, fileBytes);
+
+		if (StringUtils.isNullOrEmpty(imageString)){
+			logger.info("The result without file string of base64, response {} ", resp);
+		}else {
+			byte[] fileBytes = new BASE64Decoder().decodeBuffer(imageString);
+			writeBytesToFile(fileName, fileBytes);
+		}
 	}
 	
 	/**
@@ -85,7 +92,7 @@ public class ResponseProcessUtils {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e.getMessage());
+			logger.error("Failed to generate file is faild, cause {}", e);
 		}
 		finally {
 			fc.close();

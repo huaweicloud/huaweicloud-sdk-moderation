@@ -42,7 +42,7 @@ public class ModerationImageContentBatchDemo {
 			JSONObject json = new JSONObject();
 			
 			json.put("urls", urls);
-			json.put("categories", new String[] {"politics"}); //检测内容
+			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); //检测内容
 			json.put("threshold", 0);
 			
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");

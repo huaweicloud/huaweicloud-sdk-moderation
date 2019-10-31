@@ -53,7 +53,7 @@ public class ModerationImageContentDemo {
 			JSONObject json = new JSONObject();
 			
 			json.put("image", fileBase64Str);
-			json.put("categories", new String[] {"politics"}); //检测内容
+			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); //检测内容
 			json.put("threshold", 0);
 			
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
