@@ -19,5 +19,5 @@ if __name__ == '__main__':
     token = get_token(user_name, password, account_name)
 
     # call interface use the url (token, urls, categories )
-    result = image_content_batch(token, [demo_data_url1, demo_data_url2], ['politics', 'terrorism'], 0)
+    result = image_content_batch(token, [demo_data_url1, demo_data_url2], ['porn', 'politics', 'terrorism', 'ad'], 0)
     print(result)

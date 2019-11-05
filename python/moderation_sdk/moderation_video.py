@@ -87,7 +87,7 @@ def _get_result(endpoint, token, job_id):
 #
 # access asr, long_sentence，post data by ak,sk
 #
-def moderation_video_aksk(_ak, _sk, url, frame_interval=5, categories=['politics', 'terrorism']):
+def moderation_video_aksk(_ak, _sk, url, frame_interval=5, categories=['porn', 'politics', 'terrorism']):
     sig = signer.Signer()
     sig.AppKey = _ak
     sig.AppSecret = _sk
@@ -139,7 +139,7 @@ def moderation_video_aksk(_ak, _sk, url, frame_interval=5, categories=['politics
 #
 # moderation_video, post the data
 #
-def _moderation_video_aksk(endpoint, sig, url, frame_interval=5, categories=['politics', 'terrorism']):
+def _moderation_video_aksk(endpoint, sig, url, frame_interval=5, categories=['porn', 'politics', 'terrorism']):
     _url = 'https://%s/v1.0/moderation/video' % endpoint
 
     _data = {
