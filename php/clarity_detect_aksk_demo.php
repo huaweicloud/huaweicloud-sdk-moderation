@@ -14,7 +14,7 @@ $app_secret = "*************";
 $filepath = "./data/moderation-clarity-detect.jpg";
 $data = file_to_base64($filepath);
 
-$data_url = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/vat-invoice.jpg";
+$data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/vat-invoice.jpg";
 
 // base64 方式请求
 $result = clarity_detect_aksk($app_key, $app_secret, $data, "", 0.8);

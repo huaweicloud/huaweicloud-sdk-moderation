@@ -13,7 +13,7 @@ $username = "********";      // 配置用户名
 $password = "********";      // 密码
 $domainName = "*********";   // 配置用户名
 
-$demo_data_url = "https://obs-image-bj4.obs.cn-north-4.myhuaweicloud.com/video_moderation.mp4";
+$demo_data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/video_moderation.mp4";
 
 $token = get_token($username, $password, $domainName);
 
