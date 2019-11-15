@@ -53,7 +53,7 @@ public class VCMTokenDemo {
 		String token = getToken(username, domainName, password, regionName);
 
 		// 2. 准备好视频文件的OBS地址，公共读状态，或者临时授权下载状态
-		String videoUrl = "https://obs-image-bj4.obs.cn-north-4.myhuaweicloud.com/video_moderation.mp4";
+		String videoUrl = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/video_moderation.mp4";
 
 		// 3. 调用视频审核服务
 		callVCMService(token, videoUrl);

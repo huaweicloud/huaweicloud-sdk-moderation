@@ -70,8 +70,8 @@ public class ModerationImageContentBatchDemo {
 	//
 	public static void main(String[] args) throws IOException {
 		ModerationImageContentBatchDemo tool = new ModerationImageContentBatchDemo();
-		String url1 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg";
-		String url2 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/antiporn.jpg";
+		String url1 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";
+		String url2 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/antiporn.jpg";
 		tool.imageContentBatchCheck(new String[]{url1,url2});
 
 	}
