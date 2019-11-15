@@ -14,8 +14,8 @@ if __name__ == '__main__':
     password = '******'
     account_name = '******'  # the same as user_name in commonly use
 
-    demo_data_url1 = 'https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg'
-    demo_data_url2 = 'https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/antiporn.jpg'
+    demo_data_url1 = 'https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg'
+    demo_data_url2 = 'https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/antiporn.jpg'
 
     token = get_token(user_name, password, account_name)
 
