@@ -12,7 +12,7 @@ if __name__ == '__main__':
     app_key = '*************'
     app_secret = '************'
 
-    demo_data_url = 'https://obs-image-bj4.obs.cn-north-4.myhuaweicloud.com/video_moderation.mp4'
+    demo_data_url = 'https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/video_moderation.mp4'
 
     # call interface use the url
     result = moderation_video_aksk(app_key, app_secret, demo_data_url, 1, ['porn', 'politics', 'terrorism'])
