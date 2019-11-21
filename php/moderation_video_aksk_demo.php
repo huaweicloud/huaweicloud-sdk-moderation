@@ -11,7 +11,7 @@ init_region($region = 'cn-north-4');
 $app_key = "*************";
 $app_secret = "*************";
 
-$demo_data_url = "https://obs-image-bj4.obs.cn-north-4.myhuaweicloud.com/video_moderation.mp4";
+$demo_data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/video_moderation.mp4";
 
 // obs的url方式请求
 $result = moderation_video_aksk($app_key, $app_secret, $demo_data_url, 1, array("terrorism", "porn", "politics"));
