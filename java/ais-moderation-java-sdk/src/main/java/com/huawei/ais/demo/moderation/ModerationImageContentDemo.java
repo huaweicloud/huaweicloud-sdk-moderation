@@ -114,7 +114,7 @@ public class ModerationImageContentDemo {
 	//
 	public static void main(String[] args) throws IOException {
 		ModerationImageContentDemo tool = new ModerationImageContentDemo();
-		tool.imageContentCheck("https://obs-ch-sdk-sample.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg");
+		tool.imageContentCheck("https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg");
 
 		byte[] imageBytes = FileUtils.readFileToByteArray(new File("data/moderation-demo-1.jpg"));
 		tool.imageContentCheck(imageBytes);
