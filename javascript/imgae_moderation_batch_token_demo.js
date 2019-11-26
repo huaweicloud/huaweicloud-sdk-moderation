@@ -13,8 +13,8 @@ var domain_name = "*******";     // 配置用户名
 var password = "*******";        // 密码
 
 // obs链接需要和region区域一致，不同的region的obs资源不共享
-url1 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg";
-url2 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/antiporn.jpg";
+url1 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";
+url2 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/antiporn.jpg";
 
 token.getToken(username, domain_name, password, function (token) {
 
