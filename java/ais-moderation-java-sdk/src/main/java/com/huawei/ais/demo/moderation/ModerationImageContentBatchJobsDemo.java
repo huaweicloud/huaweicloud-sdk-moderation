@@ -6,8 +6,6 @@ import java.io.IOException;
 import com.huawei.ais.demo.HttpJsonDataUtils;
 import com.huawei.ais.demo.ServiceAccessBuilder;
 import com.huawei.ais.sdk.AisAccessWithProxy;
-import com.huawei.ais.demo.obs.SimpleObsClient;
-import com.huawei.ais.demo.obs.ObsFileHandle;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
