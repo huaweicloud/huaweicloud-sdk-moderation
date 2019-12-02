@@ -14,8 +14,8 @@ var filepath = "./data/moderation-terrorism.jpg";
 var data = utils.changeFileToBase64(filepath);
 
 // obs链接需要和region区域一致，不同的region的obs资源不共享
-url1 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg";
-url2 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/antiporn.jpg";
+url1 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";
+url2 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/antiporn.jpg";
 
 content.image_content_batch_aksk(app_key, app_secret, [url1, url2], ["politics", "terrorism", "porn"], 0, function (result) {
     console.log(result);

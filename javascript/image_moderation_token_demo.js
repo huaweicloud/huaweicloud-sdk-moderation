@@ -16,7 +16,7 @@ var filepath = "./data/moderation-terrorism.jpg";
 var data = utils.changeFileToBase64(filepath);
 
 // obs链接需要和region区域一致，不同的region的obs资源不共享
-demo_data_url = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg";
+demo_data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";
 
 token.getToken(username, domain_name, password, function (token) {
 
