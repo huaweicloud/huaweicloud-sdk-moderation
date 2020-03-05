@@ -51,7 +51,8 @@ public class ModerationImageContentDemo {
 			String fileBase64Str = Base64.encodeBase64String(imagebytes);
 						
 			JSONObject json = new JSONObject();
-			
+
+			// api请求参数说明可参考: https://support.huaweicloud.com/api-moderation/moderation_03_0019.html
 			json.put("image", fileBase64Str);
 			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); //检测内容
 			json.put("threshold", 0);
