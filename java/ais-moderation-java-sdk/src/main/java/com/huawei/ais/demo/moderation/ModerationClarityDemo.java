@@ -41,6 +41,7 @@ public class ModerationClarityDemo {
 			byte[] fileData = FileUtils.readFileToByteArray(new File("data/moderation-demo-1.jpg"));
 			String fileBase64Str = Base64.encodeBase64String(fileData);
 
+			// api请求参数说明可参考：https://support.huaweicloud.com/api-moderation/moderation_03_0024.html
 			JSONObject json = new JSONObject();
 			json.put("image", fileBase64Str); //检测图片
 			json.put("threshold", 0.8); //判断是否清晰的阈值

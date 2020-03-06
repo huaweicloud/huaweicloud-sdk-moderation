@@ -41,6 +41,7 @@ public class ModerationDistortionCorrectDemo {
 			byte[] fileData = FileUtils.readFileToByteArray(new File("data/moderation-demo-1.jpg"));
 			String fileBase64Str = Base64.encodeBase64String(fileData);
 
+			// api请求参数说明可参考：https://support.huaweicloud.com/api-moderation/moderation_03_0014.html
 			JSONObject json = new JSONObject();
 			json.put("image", fileBase64Str); //检测图片
 			json.put("correction", true); //判断是否进行扭曲矫正

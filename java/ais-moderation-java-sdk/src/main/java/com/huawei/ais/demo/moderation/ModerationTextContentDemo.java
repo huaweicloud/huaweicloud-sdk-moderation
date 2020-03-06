@@ -43,7 +43,8 @@ public class ModerationTextContentDemo {
 			// 2.构建访问文本内容检测服务需要的参数
 			//
 			String uri = "/v1.0/moderation/text";
-			
+
+			// api请求参数说明可参考: https://support.huaweicloud.com/api-moderation/moderation_03_0018.html
 			JSONObject json = new JSONObject();
 			json.put("categories", new String[] {"porn","politics", "ad", "abuse", "contraband", "flood"}); //检测内容
 

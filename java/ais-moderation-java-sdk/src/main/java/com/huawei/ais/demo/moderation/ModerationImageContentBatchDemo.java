@@ -40,7 +40,8 @@ public class ModerationImageContentBatchDemo {
 			String uri = "/v1.0/moderation/image/batch";
 						
 			JSONObject json = new JSONObject();
-			
+
+			// api请求参数说明可参考：https://support.huaweicloud.com/api-moderation/moderation_03_0036.html
 			json.put("urls", urls);
 			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); //检测内容
 			json.put("threshold", 0);

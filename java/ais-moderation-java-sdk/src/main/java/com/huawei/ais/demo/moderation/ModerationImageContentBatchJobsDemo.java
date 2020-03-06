@@ -51,6 +51,7 @@ public class ModerationImageContentBatchJobsDemo {
 			String url1 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";
 			String url2 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/antiporn.jpg";
 
+			// api请求参数说明可参考: https://support.huaweicloud.com/api-moderation/moderation_03_0038.html
 			JSONObject json = new JSONObject();
 			json.put("urls", new String[] {url1,url2});		//检测的obs对象数组，可自行添加
 			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); 		//检测场景
