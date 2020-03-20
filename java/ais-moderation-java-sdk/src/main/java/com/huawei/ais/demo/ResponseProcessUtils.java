@@ -58,12 +58,11 @@ public class ResponseProcessUtils {
 	/**
 	 * 处理返回Base64编码的图像文件的生成
 	 * 
-	 * @param response
+	 * @param result
 	 * @throws UnsupportedOperationException
 	 * @throws IOException
 	 */
-	public static void processResponseWithImage(HttpResponse response, String fileName) throws UnsupportedOperationException, IOException {
-		String result = HttpClientUtils.convertStreamToString(response.getEntity().getContent());
+	public static void processResponseWithImage(String result, String fileName) throws UnsupportedOperationException, IOException {
 		JSONObject resp = JSON.parseObject(result);
 		JSONObject responseRlt = (JSONObject) resp.get("result");
 		String imageString = (String)responseRlt.get("data");

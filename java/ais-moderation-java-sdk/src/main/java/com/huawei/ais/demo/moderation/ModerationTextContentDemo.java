@@ -46,7 +46,9 @@ public class ModerationTextContentDemo {
 
 			// api请求参数说明可参考: https://support.huaweicloud.com/api-moderation/moderation_03_0018.html
 			JSONObject json = new JSONObject();
-			json.put("categories", new String[] {"porn","politics", "ad", "abuse", "contraband", "flood"}); //检测内容
+			// 注：检测场景支持默认场景和自定义词库场景
+			// 自定义词库配置使用可参考:https://support.huaweicloud.com/api-moderation/moderation_03_0027.html
+			json.put("categories", new String[] {"porn","politics", "ad", "abuse", "contraband", "flood"});
 
 			JSONObject text = new JSONObject();
 			text.put("text", "luo聊请+我，微信110");
