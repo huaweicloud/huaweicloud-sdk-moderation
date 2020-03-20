@@ -169,7 +169,9 @@ public class TokenDemo {
 			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, connectionTimeout, connectionRequestTimeout, socketTimeout);
 			
 			if(ResponseProcessUtils.isRespondedOK(response)) {
-				ResponseProcessUtils.processResponseWithImage(response, "data/moderation-distortion.corrected.jpg");
+				String result = HttpClientUtils.convertStreamToString(response.getEntity().getContent());
+				System.out.println(result);
+				ResponseProcessUtils.processResponseWithImage(result, "data/moderation-distortion.corrected.jpg");
 			} else {
 				// 处理服务返回的字符流，输出识别结果。
 				ResponseProcessUtils.processResponseStatus(response);
