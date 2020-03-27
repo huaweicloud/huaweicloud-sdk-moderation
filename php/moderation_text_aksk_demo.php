@@ -5,7 +5,7 @@
 require "./moderation_sdk/moderation_text.php";
 require "./moderation_sdk/utils.php";
 
-// region目前支持华北-北京(cn-north-4)、亚太-香港(ap-southeast-1)
+// region目前支持华北-北京(cn-north-4)、华东上海一(cn-east-3)、亚太-香港(ap-southeast-1)
 init_region($region = 'cn-north-4');
 
 $app_key = "*********";
