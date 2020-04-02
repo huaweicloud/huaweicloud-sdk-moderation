@@ -23,7 +23,7 @@ public class ModerationLongVideoAkskDemo {
     public static int connectionTimeout = 5000; //连接目标url超时限制参数
     public static int connectionRequestTimeout = 1000;//连接池获取可用连接超时限制参数
     public static int socketTimeout =  5000;//获取服务器响应数据超时限制参数
-    public static int maxRetryTimes =  5000;//获取服务器响应数据超时限制参数
+    public static int maxRetryTimes =  3; //请求异常的重试次数
     private static final long QUERY_JOB_RESULT_INTERVAL = 10000L;
     private static final Integer RETRY_MAX_TIMES = 3; // 查询任务失败的最大重试次数
 
