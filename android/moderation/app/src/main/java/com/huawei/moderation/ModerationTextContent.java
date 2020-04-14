@@ -1,8 +1,5 @@
 package com.huawei.moderation;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.huawei.moderation.utils.AccessService;
@@ -18,7 +15,7 @@ public class ModerationTextContent {
         this.service = service;
     }
 
-    public void moderationText(String textStr, Callback callback) throws Exception{
+    public void moderationText(String textStr, Callback callback) throws Exception {
         //
         // 2.构建访问文本内容检测服务需要的参数
         //

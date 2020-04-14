@@ -1,8 +1,6 @@
 package com.huawei.moderation;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.huawei.moderation.utils.AccessService;

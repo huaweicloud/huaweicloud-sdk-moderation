@@ -6,13 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.huawei.moderation.utils.AccessService;
 import com.huawei.moderation.utils.HttpClientUtils;
 
-import org.apache.commons.codec.binary.Base64;
-
-import java.io.IOException;
-
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Response;
 
 
 public class ModerationClarity {
@@ -48,7 +43,7 @@ public class ModerationClarity {
 
         // 3.传入清晰度检测服务对应的uri参数, 传入清晰度检测服务需要的参数，
         // 该参数主要通过JSON对象的方式传入, 使用POST方法调用服务
-        Call call =  service.post(uri, json.toJSONString());
+        Call call = service.post(uri, json.toJSONString());
         call.enqueue(callback);
     }
 }
