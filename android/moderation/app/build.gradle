@@ -34,4 +34,5 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.11.0'
     implementation 'com.alibaba:fastjson:1.2.66'
     implementation 'joda-time:joda-time:2.7'
+    implementation files('libs/java-sdk-core-3.0.6.jar')
 }
