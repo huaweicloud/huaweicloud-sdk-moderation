@@ -2,29 +2,18 @@ package com.huawei.moderation;
 
 import android.graphics.Bitmap;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.sdk.util.StringUtils;
 import com.huawei.moderation.utils.HttpClientUtils;
 import com.huawei.moderation.utils.ServiceAccessBuilder;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-
-
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 /**
  * 使用Token认证方式访问服务
@@ -102,17 +91,17 @@ public class TokenDemo {
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", MediaType.parse("application/json; charset=utf-8").toString());
 
-       return HttpClientUtils.post(url, headers, requestBody);
+        return HttpClientUtils.post(url, headers, requestBody);
     }
 
     /**
      * 清晰度检测，使用Token认证方式访问服务
      *
-     * @param token    token认证串
+     * @param token  token认证串
      * @param bitmap 图像
      * @throws IOException
      */
-    public static void moderationClarity(String token, Bitmap bitmap, Callback callback ) throws Exception {
+    public static void moderationClarity(String token, Bitmap bitmap, Callback callback) throws Exception {
         String url = ServiceAccessBuilder.getCurrentEndpoint(projectName) + "/v1.0/moderation/image/clarity-detect";
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", "application/json");
@@ -129,7 +118,7 @@ public class TokenDemo {
     /**
      * 扭曲矫正，使用Token认证方式访问服务
      *
-     * @param token    token认证串
+     * @param token  token认证串
      * @param bitmap 图像
      * @throws IOException
      */
@@ -144,7 +133,7 @@ public class TokenDemo {
         json.put("image", fileBase64Str);
         json.put("correction", true);
 
-        Call call =  HttpClientUtils.post(url, headers, json);
+        Call call = HttpClientUtils.post(url, headers, json);
         call.enqueue(callback);
     }
 
@@ -180,7 +169,7 @@ public class TokenDemo {
     /**
      * 图像内容检测，使用Base64编码后的文件方式，使用Token认证方式访问服务
      *
-     * @param token    token认证串
+     * @param token  token认证串
      * @param bitmap 图像
      * @throws IOException
      */

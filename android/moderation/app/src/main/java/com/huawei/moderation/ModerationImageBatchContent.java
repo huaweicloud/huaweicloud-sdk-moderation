@@ -1,14 +1,10 @@
 package com.huawei.moderation;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import com.alibaba.fastjson.JSONObject;
 import com.huawei.moderation.utils.AccessService;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Response;
 
 public class ModerationImageBatchContent {
     private AccessService service;
@@ -17,7 +13,7 @@ public class ModerationImageBatchContent {
         this.service = service;
     }
 
-    public void imageContentBatchCheck(String[] urls, Callback callback) throws Exception{
+    public void imageContentBatchCheck(String[] urls, Callback callback) throws Exception {
         //
         // 构建访问图像内容批量检测服务需要的参数
         //
