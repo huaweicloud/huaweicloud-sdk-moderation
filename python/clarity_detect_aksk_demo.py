@@ -13,7 +13,7 @@ if __name__ == '__main__':
     app_key = '*************'
     app_secret = '************'
 
-    demo_data_url = 'https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/vat-invoice.jpg'
+    demo_data_url = 'https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/moderation-clarity-detect.jpg'
 
     # call interface use the url
     result = clarity_detect_aksk(app_key, app_secret, '', demo_data_url, 0.8)

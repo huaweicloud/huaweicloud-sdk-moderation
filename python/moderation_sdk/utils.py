@@ -11,7 +11,7 @@ if sys.version_info.major < 3:
     import urllib
     import urllib2
 
-    def request_token(_url, _data, token):
+    def request_token(_url, _data, token, timeout=5):
         kreq = urllib2.Request(url=_url)
         kreq.add_header('Content-Type', 'application/json')
         kreq.add_header('X-Auth-Token', token)
@@ -25,7 +25,7 @@ if sys.version_info.major < 3:
             # the client CA-validation have some problem, so we must do this.
             #
             _context = ssl._create_unverified_context()
-            r = urllib2.urlopen(kreq, context=_context, timeout=5)
+            r = urllib2.urlopen(kreq, context=_context, timeout=timeout)
 
         #
         # We use HTTPError and URLError，because urllib2 can't process the 4XX &
@@ -76,7 +76,7 @@ if sys.version_info.major < 3:
             resp = r.read()
         return status_code, resp
 
-    def request_aksk(sig, kreq, _url):
+    def request_aksk(sig, kreq, _url, timeout=5):
         resp = None
         status_code = None
         try:
@@ -87,7 +87,7 @@ if sys.version_info.major < 3:
             #
             _context = ssl._create_unverified_context()
             req = urllib2.Request(url=_url, data=kreq.body, headers=kreq.headers)
-            r = urllib2.urlopen(req, context=_context, timeout=5)
+            r = urllib2.urlopen(req, context=_context, timeout=timeout)
         #
         # We use HTTPError and URLError，because urllib2 can't process the 4XX &
         # 500 error in the single urlopen function.
@@ -275,6 +275,9 @@ else:
 
     def download_url_base64(url):
         return base64.b64encode(urllib.request.urlopen(url).read())
+
+    def update_socket_time(timeout):
+        socket.setdefaulttimeout(timeout)
 
 
 _ENDPOINT = {
