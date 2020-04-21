@@ -260,6 +260,7 @@ public class TokenDemo {
      * @throws IOException
      */
     public static void requestModerationImageContentBatch(String token, String[] urls) throws IOException {
+    	socketTimeout = 15000; // 同步审核的批量接口超时时间需按照url数进行调整
         String url = ServiceAccessBuilder.getCurrentEndpoint(projectName)+"/v1.0/moderation/image/batch";
         Header[] headers = new Header[] {new BasicHeader("X-Auth-Token", token) ,new BasicHeader("Content-Type", ContentType.APPLICATION_JSON.toString())};
         try {
@@ -400,16 +401,16 @@ public class TokenDemo {
 		socketTimeout = 5000;//获取服务器响应数据超时限制
 		
 		//运行清晰度检测服务
-		//requestModerationClarityBase64(token, "data/moderation-demo-1.jpg");
+		//requestModerationClarityBase64(token, "data/moderation-clarity-detect.jpg");
 		
 		//运行扭曲矫正服务
-		//requestModerationDistortionCorrectBase64(token, "data/moderation-demo-1.jpg");
+		//requestModerationDistortionCorrectBase64(token, "data/modeation-distortion.jpg");
 		
 		//运行文本内容检测服务
-		//requestModerationTextContentBase64(token, "luo聊请+我，微信110");
+		//requestModerationTextContentBase64(token, "666666luo聊请+110亚砷酸钾六位qq，fuck666666666666666");
 		
 		//运行图像内容检测服务
-		//requestModerationImageContentBase64(token, "data/moderation-demo-1.jpg");
+		//requestModerationImageContentBase64(token, "data/moderation-terrorism.jpg");
 
 		//运行图像内容检测异步批量服务
 		String url1 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";

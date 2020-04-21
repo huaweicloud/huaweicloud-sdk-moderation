@@ -102,10 +102,10 @@ public class ModerationClarityDemo {
 
 		// 测试入口函数
 		ModerationClarityDemo tools = new ModerationClarityDemo();
-		byte[] fileData = FileUtils.readFileToByteArray(new File("data/moderation-demo-1.jpg"));
+		byte[] fileData = FileUtils.readFileToByteArray(new File("data/moderation-clarity-detect.jpg"));
 		tools.clarityDetectDemo(fileData);
 
-		String url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/vat-invoice.jpg";
+		String url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/moderation-clarity-detect.jpg";
 		tools.clarityDetectDemo(url);
 
 	}

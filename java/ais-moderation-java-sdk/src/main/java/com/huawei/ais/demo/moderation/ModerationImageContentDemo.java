@@ -87,7 +87,7 @@ public class ModerationImageContentDemo {
 			JSONObject json = new JSONObject();
 
 			json.put("url", url);
-			json.put("categories", new String[] {"politics"}); //检测内容
+			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); //检测内容
 			json.put("threshold", 0);
 
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
@@ -117,7 +117,7 @@ public class ModerationImageContentDemo {
 		ModerationImageContentDemo tool = new ModerationImageContentDemo();
 		tool.imageContentCheck("https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg");
 
-		byte[] imageBytes = FileUtils.readFileToByteArray(new File("data/moderation-demo-1.jpg"));
+		byte[] imageBytes = FileUtils.readFileToByteArray(new File("data/moderation-terrorism.jpg"));
 		tool.imageContentCheck(imageBytes);
 	}
 }
