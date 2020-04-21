@@ -19,10 +19,13 @@ def image_content_batch(token, urls, categories=None, threshold=None):
         "threshold": threshold,
     }
 
-    status_code, resp = utils.request_token(_url, _data, token)
+
     if sys.version_info.major < 3:
+        status_code, resp = utils.request_token(_url, _data, token, timeout=20)
         return resp
     else:
+        utils.update_socket_time(timeout=20)
+        status_code, resp = utils.request_token(_url, _data, token)
         return resp.decode('utf-8')
 
 
@@ -51,8 +54,10 @@ def image_content_batch_aksk(_ak, _sk, urls, categories=None, threshold=None):
     kreq.headers = {"Content-Type": "application/json"}
     kreq.body = json.dumps(_data)
 
-    status_code, resp = utils.request_aksk(sig, kreq, _url)
     if sys.version_info.major < 3:
+        status_code, resp = utils.request_aksk(sig, kreq, _url, timeout=20)
         return resp
     else:
+        utils.update_socket_time(timeout=20)
+        status_code, resp = utils.request_aksk(sig, kreq, _url)
         return resp.decode('utf-8')
