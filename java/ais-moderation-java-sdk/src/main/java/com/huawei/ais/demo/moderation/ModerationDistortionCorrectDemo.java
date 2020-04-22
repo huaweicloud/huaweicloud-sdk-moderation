@@ -118,10 +118,10 @@ public class ModerationDistortionCorrectDemo {
 	public static void main(String[] args) throws IOException {
 		// 测试入口函数
 		ModerationDistortionCorrectDemo tools = new ModerationDistortionCorrectDemo();
-		byte[] fileData = FileUtils.readFileToByteArray(new File("data/moderation-demo-1.jpg"));
+		byte[] fileData = FileUtils.readFileToByteArray(new File("data/modeation-distortion.jpg"));
 		tools.moderationDistortionCorrectDemo(fileData);
 
-		String url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/vat-invoice.jpg";
+		String url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/modeation-distortion.jpg";
 		tools.moderationDistortionCorrectDemo(url);
 	}
 }

@@ -51,7 +51,7 @@ public class ModerationTextContentDemo {
 			json.put("categories", new String[] {"porn","politics", "ad", "abuse", "contraband", "flood"});
 
 			JSONObject text = new JSONObject();
-			text.put("text", "luo聊请+我，微信110");
+			text.put("text", "666666luo聊请+110亚砷酸钾六位qq，fuck666666666666666");
 			text.put("type", "content");
 			
 			JSONArray items = new JSONArray();
