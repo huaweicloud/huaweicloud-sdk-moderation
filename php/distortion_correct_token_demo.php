@@ -13,10 +13,10 @@ $username = "********";      // 配置用户名
 $password = "********";      // 密码
 $domainName = "*********";   // 配置用户名
 
-$filepath = "./data/modeation-distortion.jpg";
+$filepath = "./data/moderation-distortion.jpg";
 $image = file_to_base64($filepath);
 
-$demo_data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/vat-invoice.jpg";
+$demo_data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/moderation-distortion.jpg";
 
 $token = get_token($username, $password, $domainName);
 

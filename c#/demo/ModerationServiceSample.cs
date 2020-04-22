@@ -59,7 +59,7 @@ namespace ModerationDemo
             Console.WriteLine(reslut);
 
             // The OBS link must match the region, and the OBS resources of different regions are not shared
-            dataUrl = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/vat-invoice.jpg";
+            dataUrl = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/moderation-clarity-detect.jpg";
 
             // post data by obs url
             reslut = ModerationService.ClarityDetectToken(token, "", dataUrl, threshold, endpoint);
@@ -76,12 +76,12 @@ namespace ModerationDemo
             bool correction = false;   
 
             // post data by native file
-            String data = utils.ConvertFileToBase64("../../data/modeation-distortion.jpg");
+            String data = utils.ConvertFileToBase64("../../data/moderation-distortion.jpg");
             String reslut = ModerationService.DistortionCorrectToken(token, data, dataUrl, correction, endpoint);
             JObject joResult = (JObject)JsonConvert.DeserializeObject(reslut);
             if (joResult["result"]["data"].ToString() != "")
             {
-                String resultPath = @"../../data/modeation-distortion-token-1.bmp";
+                String resultPath = @"../../data/moderation-distortion-token-1.bmp";
                 resultPath = utils.Base64ToFileAndSave(joResult["result"]["data"].ToString(), resultPath);
                 Console.WriteLine(resultPath);
             }
@@ -91,14 +91,14 @@ namespace ModerationDemo
             }
 
             // The OBS link must match the region, and the OBS resources of different regions are not shared
-            dataUrl = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/vat-invoice.jpg";
+            dataUrl = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/modeation-distortion.jpg";
 
             // post data by obs url
             reslut = ModerationService.DistortionCorrectToken(token, "", dataUrl, correction, endpoint);
             joResult = (JObject)JsonConvert.DeserializeObject(reslut);
             if (joResult["result"]["data"].ToString() != "")
             {
-                String resultPath = @"../../data/modeation-distortion-token-2.bmp";
+                String resultPath = @"../../data/moderation-distortion-token-2.bmp";
                 resultPath = utils.Base64ToFileAndSave(joResult["result"]["data"].ToString(), resultPath);
                 Console.WriteLine(resultPath);
             }
@@ -129,7 +129,7 @@ namespace ModerationDemo
             Console.WriteLine(reslut);
 
             // The OBS link must match the region, and the OBS resources of different regions are not shared
-            dataUrl = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg";
+            dataUrl = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";
 
             // post data by obs url
             reslut = ModerationService.ImageContentToken(token, "", dataUrl, threshold, categories, endpoint);
@@ -140,8 +140,8 @@ namespace ModerationDemo
         private static void ImageContentBatch(String token, String endpoint)
         {
             // The OBS link must match the region, and the OBS resources of different regions are not shared
-            String dataUrl1 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg";
-            String dataUrl2 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/antiporn.jpg";
+            String dataUrl1 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";
+            String dataUrl2 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/antiporn.jpg";
 
             JArray urls = new JArray();
             urls.Add(dataUrl1);
@@ -163,8 +163,8 @@ namespace ModerationDemo
         {
 
             // The OBS link must match the region, and the OBS resources of different regions are not shared
-            String dataUrl1 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/terrorism.jpg";
-            String dataUrl2 = "https://ais-sample-data.obs.cn-north-1.myhuaweicloud.com/antiporn.jpg";
+            String dataUrl1 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";
+            String dataUrl2 = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/antiporn.jpg";
 
             JArray urls = new JArray();
             urls.Add(dataUrl1);
