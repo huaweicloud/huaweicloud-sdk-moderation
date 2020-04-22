@@ -39,7 +39,7 @@ func Test_ClarityDetectAkskDemo(ak string, sk string) {
 	var threshold float32 = 0.8
 
 	// The OBS link should match the region, and the OBS resources of different regions are not shared
-	url := "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/vat-invoice.jpg"
+	url := "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/moderation-clarity-detect.jpg"
 	result := sdk.ClarityDetectAksk(ak, sk, "", url, threshold)
 	fmt.Println(result)
 
@@ -54,12 +54,12 @@ func Test_DistortionCorrectAkskDemo(ak string, sk string) {
 	var correction bool = true
 
 	// The OBS link should match the region, and the OBS resources of different regions are not shared
-	url := "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/vat-invoice.jpg"
+	url := "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/modeation-distortion.jpg"
 	result := sdk.DistortionCorrectAksk(ak, sk, "", url, correction)
 	fmt.Println(result)
 
 	// post data by native file
-	filepath := "data/modeation-distortion.jpg"
+	filepath := "data/moderation-distortion.jpg"
 	image := sdk.ChangeFileToBase64(filepath)
 	result = sdk.DistortionCorrectAksk(ak, sk, image, "", correction)
 	fmt.Println(result)

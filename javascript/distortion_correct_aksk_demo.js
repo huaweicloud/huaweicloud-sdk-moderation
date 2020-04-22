@@ -14,7 +14,7 @@ var filepath = "./data/moderation-distortion.jpg";
 var data = utils.changeFileToBase64(filepath);
 
 // obs链接需要和region区域一致，不同的region的obs资源不共享
-demo_data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/vat-invoice.jpg";
+demo_data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/modeation-distortion.jpg";
 
 discor.distortion_correct_aksk(app_key, app_secret, data, "", true, function (result) {
     var resultObj = JSON.parse(result);
