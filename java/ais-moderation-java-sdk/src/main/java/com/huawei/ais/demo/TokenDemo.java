@@ -50,7 +50,7 @@ public class TokenDemo {
 		JSONObject password = new JSONObject();
 
 		JSONObject user = new JSONObject();
-		user.put("name", domainName);
+		user.put("name", username);
 		user.put("password", passwd);
 
 		JSONObject domain = new JSONObject();
@@ -88,9 +88,9 @@ public class TokenDemo {
 	 * @throws UnsupportedOperationException
 	 * @throws IOException
 	 */
-	private static String getToken(String username, String password, String projectName)
+	private static String getToken(String username, String password, String domainName, String projectName)
 			throws URISyntaxException, UnsupportedOperationException, IOException {
-		String requestBody = requestBody(username, password, username, projectName);
+		String requestBody = requestBody(username, password, domainName, projectName);
 		String url ="https://iam.myhuaweicloud.com/v3/auth/tokens";
 
 		Header[] headers = new Header[] { new BasicHeader("Content-Type", ContentType.APPLICATION_JSON.toString()) };
@@ -391,8 +391,9 @@ public class TokenDemo {
 	public static void main(String[] args) throws URISyntaxException, UnsupportedOperationException, IOException {
 		String username = "zhangshan";		// 此处，请输入用户名
 		String password = "*******";		// 此处，请输入对应用户名的密码
+		String domainName = "*******";		// 账户为主账号，此处输入与用户名一致，若为子账号，此处输入为主账户用户名
 
-		String token = getToken(username, password, projectName);
+		String token = getToken(username, password, domainName, projectName);
 		System.out.println(token);
 		
 		// 设置三个超时参数限制连接超时，分别如下
