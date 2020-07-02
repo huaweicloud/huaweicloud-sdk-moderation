@@ -16,6 +16,7 @@ func init(){
 	moderationMap["cn-north-1"] = "moderation.cn-north-1.myhuaweicloud.com"
 	moderationMap["ap-southeast-1"] = "moderation.ap-southeast-1.myhuaweicloud.com"
 	moderationMap["cn-north-4"] = "moderation.cn-north-4.myhuaweicloud.com"
+	moderationMap["ap-southeast-3"] = "moderation.ap-southeast-3.myhuaweicloud.com"
 	ENDPOINTS["moderation"] = moderationMap
 }
 
