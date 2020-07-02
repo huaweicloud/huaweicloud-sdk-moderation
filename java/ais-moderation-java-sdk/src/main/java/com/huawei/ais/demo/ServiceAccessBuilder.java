@@ -27,6 +27,7 @@ public class ServiceAccessBuilder {
 		endponitMap.put("cn-north-4", "https://moderation.cn-north-4.myhuaweicloud.com");
 		endponitMap.put("ap-southeast-1", "https://moderation.ap-southeast-1.myhuaweicloud.com");
 		endponitMap.put("cn-east-3", "https://moderation.cn-east-3.myhuaweicloud.com");
+		endponitMap.put("ap-southeast-3", "https://moderation.ap-southeast-3.myhuaweicloud.com");
 	}
 
 	private String region;
