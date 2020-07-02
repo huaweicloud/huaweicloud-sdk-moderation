@@ -9,7 +9,8 @@ global.ENDPOINT = {
         'cn-north-1': 'moderation.cn-north-1.myhuaweicloud.com',
         'cn-north-4': 'moderation.cn-north-4.myhuaweicloud.com',
         'ap-southeast-1': 'moderation.ap-southeast-1.myhuaweicloud.com',
-        'cn-east-3': 'moderation.cn-east-3.myhuaweicloud.com'
+        'cn-east-3': 'moderation.cn-east-3.myhuaweicloud.com',
+        'ap-southeast-3': 'moderation.ap-southeast-3.myhuaweicloud.com'
     }
 };
 
