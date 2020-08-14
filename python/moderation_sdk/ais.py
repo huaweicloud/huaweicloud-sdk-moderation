@@ -15,3 +15,4 @@ class ModerationURI:
 class AisService:
     MODERATION_SERVICE = 'moderation'
     REGION_MSG = 'region_name'
+    CERTIFICATE_VALIDATION = True
