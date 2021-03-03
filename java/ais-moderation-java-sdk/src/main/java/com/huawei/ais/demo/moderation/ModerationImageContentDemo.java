@@ -56,6 +56,8 @@ public class ModerationImageContentDemo {
 			json.put("image", fileBase64Str);
 			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); //检测内容
 			json.put("threshold", 0);
+			// 配置审核规则请参考：https://support.huaweicloud.com/api-moderation/moderation_03_0063.html
+			json.put("moderation_rule", "default");
 			
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
 
