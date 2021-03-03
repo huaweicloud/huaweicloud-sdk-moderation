@@ -218,7 +218,7 @@ public class TokenDemo {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 图像内容检测，使用Base64编码后的文件方式，使用Token认证方式访问服务
 	 * @param token 
@@ -237,6 +237,8 @@ public class TokenDemo {
 			json.put("image", fileBase64Str);
 			json.put("categories", new String[] {"politics", "terrorism", "porn", "ad"}); //检测内容
 			json.put("threshold", 0);
+			// 配置审核规则请参考：https://support.huaweicloud.com/api-moderation/moderation_03_0063.html
+			json.put("moderation_rule", "default");
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
 			
 			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, connectionTimeout, connectionRequestTimeout, socketTimeout);

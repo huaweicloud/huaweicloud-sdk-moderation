@@ -81,11 +81,14 @@ public class AisAccess extends AccessServiceImpl{
 					break;
 				}
 
+				Map<String, String> header = new HashMap<String, String>();
+				header.put("Content-Type", ContentType.APPLICATION_JSON.toString());
+
 				URL url = new URL(generateWholeUrl(authInfo.getEndPoint(), requestUrl));
 				HttpMethodName httpMethod = HttpMethodName.PUT;
 
 				InputStream content = new ByteArrayInputStream(putBody.getBytes());
-				response = access(url, content, (long) putBody.getBytes().length, httpMethod);
+				response = access(url, header, content, (long) putBody.getBytes().length, httpMethod);
 				int statusCode = response.getStatusLine().getStatusCode();
 				if(!HttpClientUtils.needRetry(statusCode)){
 					break;
