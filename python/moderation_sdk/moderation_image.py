@@ -9,7 +9,7 @@ import moderation_sdk.signer as signer
 #
 # access moderation image,post data by token
 #
-def moderation_image(token, image, url, categories=None, threshold=None):
+def moderation_image(token, image, url, categories=None, threshold=None, moderation_rule="default"):
     endpoint = utils.get_endpoint(ais.AisService.MODERATION_SERVICE)
     _url = 'https://%s/v1.0/moderation/image' % endpoint
 
@@ -22,6 +22,7 @@ def moderation_image(token, image, url, categories=None, threshold=None):
         "url": url,
         "categories": categories,
         "threshold": threshold,
+        "moderation_rule": moderation_rule
     }
 
     status_code, resp = utils.request_token(_url, _data, token)
@@ -34,7 +35,7 @@ def moderation_image(token, image, url, categories=None, threshold=None):
 #
 # access moderation image,post data by token
 #
-def moderation_image_aksk(_ak, _sk, image, url, categories=None, threshold=None):
+def moderation_image_aksk(_ak, _sk, image, url, categories=None, threshold=None, moderation_rule="default"):
     endpoint = utils.get_endpoint(ais.AisService.MODERATION_SERVICE)
     _url = 'https://%s/v1.0/moderation/image' % endpoint
 
@@ -51,6 +52,7 @@ def moderation_image_aksk(_ak, _sk, image, url, categories=None, threshold=None)
         "url": url,
         "categories": categories,
         "threshold": threshold,
+        "moderation_rule": moderation_rule
     }
 
     kreq = signer.HttpRequest()

@@ -5,7 +5,7 @@ require "ais.php";
 /**
  * token 方式
  */
-function image_content($token, $data, $url, $categories, $threshold)
+function image_content($token, $data, $url, $categories, $threshold, $moderation_rule)
 {
 
     $endPoint = get_endpoint(MODERATION);
@@ -17,6 +17,7 @@ function image_content($token, $data, $url, $categories, $threshold)
         "url" => $url,                         // 与image二选一 图片的URL路径
         "threshold" => $threshold,             // 非必选 结果过滤门限
         "categories" => $categories,           // 非必选 检测场景 array politics：是否涉及政治人物的检测。terrorism：是否包含暴恐元素的检测。porn：是否包含涉黄内容元素的检测
+        "moderation_rule" => $moderation_rule  // 非必选 配置审核规则请参考：https://support.huaweicloud.com/api-moderation/moderation_03_0063.html
     );
 
     $curl = curl_init();
@@ -58,7 +59,7 @@ function image_content($token, $data, $url, $categories, $threshold)
 /**
  * ak,sk 方式
  */
-function image_content_aksk($_ak, $_sk, $data, $url, $categories, $threshold)
+function image_content_aksk($_ak, $_sk, $data, $url, $categories, $threshold, $moderation_rule)
 {
     // 构建ak，sk对象
     $signer = new Signer();
@@ -79,6 +80,7 @@ function image_content_aksk($_ak, $_sk, $data, $url, $categories, $threshold)
         "url" => $url,                         // 与image二选一 图片的URL路径
         "threshold" => $threshold,             // 非必选 结果过滤门限 过滤门限0-1 之间，检测结果与算法有关，与其他无关
         "categories" => $categories,           // 非必选 检测场景 array politics：是否涉及政治人物的检测。terrorism：是否包含暴恐元素的检测。porn：是否包含涉黄内容元素的检测
+        "moderation_rule" => $moderation_rule  // 非必选 配置审核规则请参考：https://support.huaweicloud.com/api-moderation/moderation_03_0063.html
     );
 
     $headers = array(

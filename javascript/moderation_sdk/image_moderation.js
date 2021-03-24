@@ -4,7 +4,7 @@ var signer = require("./signer");
 var ais = require("./ais");
 
 module.exports = {
-    image_content: function (token, data, url, categories, threshold, callback) {
+    image_content: function (token, data, url, categories, threshold, moderation_rule, callback) {
 
         var endPoint = utils.getEndPoint(ais.MODERATION_SERVICE);
 
@@ -15,7 +15,8 @@ module.exports = {
          * categories：非必选 检测场景 array politics：是否涉及政治人物的检测。terrorism：是否包含暴恐元素的检测。porn：是否包含涉黄内容元素的检测。
          * @type {string}
          */
-        var requestData = {"image": data, url: url, "categories": categories, "threshold": threshold};
+        var requestData = {"image": data, url: url, "categories": categories,
+            "threshold": threshold, "$moderation_rule": moderation_rule};
         var requestBody = JSON.stringify(requestData);
 
         var options = utils.getHttpRequestEntityOptions(endPoint, "POST", ais.IMAGE_CONTENT_DETECT, {
@@ -44,7 +45,7 @@ module.exports = {
         request.end();
     },
 
-    image_content_aksk: function (_ak, _sk, data, url, categories, threshold, callback) {
+    image_content_aksk: function (_ak, _sk, data, url, categories, threshold, moderation_rule, callback) {
 
         // 配置ak，sk信息
         var sig = new signer.Signer();
@@ -61,7 +62,8 @@ module.exports = {
          *  categories ：非必选 检测场景 array politics：是否涉及政治人物的检测。terrorism：是否包含暴恐元素的检测。porn：是否包含涉黄内容元素的检测。
          * @type {string}
          */
-        var requestData = {"image": data, url: url, "categories": categories, "threshold": threshold};
+        var requestData = {"image": data, url: url, "categories": categories,
+            "threshold": threshold, moderation_rule: moderation_rule};
         var req = new signer.HttpRequest();
         var options = utils.getHttpRequestEntity(sig, req, endPoint, "POST", ais.IMAGE_CONTENT_DETECT, "", {"Content-Type": "application/json"}, requestData);
 

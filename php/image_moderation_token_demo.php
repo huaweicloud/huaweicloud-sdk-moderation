@@ -21,10 +21,10 @@ $data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terror
 $token = get_token($username, $password, $domainName);
 
 // 图片base64方式请求接口
-$result = image_content($token, $data, "", array("politics"), 0);
+$result = image_content($token, $data, "", array("politics"), 0, "default");
 echo $result;
 echo "\n";
 
 // 图片的obs 的url方式请求接口
-$result = image_content($token, "", $data_url, array("politics"), 0);
+$result = image_content($token, "", $data_url, array("politics"), 0, "default");
 echo $result;
