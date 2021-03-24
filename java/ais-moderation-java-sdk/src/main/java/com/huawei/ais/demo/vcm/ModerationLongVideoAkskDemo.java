@@ -18,8 +18,8 @@ import java.io.IOException;
  * 长视频内容审核API AK/SK方式使用示例
  */
 public class ModerationLongVideoAkskDemo {
-    private static final String SUBMIT_TASK_URI = "/v1/%s/services/video-moderation/tasks";
-    private static final String GET_TASK_RESULT_URI_TEMPLATE = "/v1/%s/services/video-moderation/tasks/%s";
+    private static final String SUBMIT_TASK_URI = "/v2/%s/services/video-moderation/tasks";
+    private static final String GET_TASK_RESULT_URI_TEMPLATE = "/v2/%s/services/video-moderation/tasks/%s";
     public static int connectionTimeout = 5000; //连接目标url超时限制参数
     public static int connectionRequestTimeout = 1000;//连接池获取可用连接超时限制参数
     public static int socketTimeout =  5000;//获取服务器响应数据超时限制参数
@@ -109,7 +109,7 @@ public class ModerationLongVideoAkskDemo {
         JSONObject requestJson = new JSONObject();
 
         // 新建任务名称
-        requestJson.put("taskName", "task-demo");
+        requestJson.put("name", "task-demo");
         // 新建任务描述
         requestJson.put("description", "description");
         requestJson.put("input", inputJson);
@@ -123,9 +123,9 @@ public class ModerationLongVideoAkskDemo {
 
         // 视频审核场景以及相关参数设置
         JSONObject servicesConfigJson = getServiceConfigJson();
-        requestJson.put("serviceConfig", servicesConfigJson);
+        requestJson.put("service_config", servicesConfigJson);
         // 功能版本为 1.2
-        requestJson.put("serviceVersion", "1.2");
+        requestJson.put("service_version", "1.2");
 
         StringEntity stringEntity = new StringEntity(requestJson.toJSONString(), "utf-8");
 
@@ -146,6 +146,7 @@ public class ModerationLongVideoAkskDemo {
                 taskResultArray) {
             // 获取结果的任务id
             String taskId = ((JSONObject)task).getString("id");
+            System.out.println(taskId);
 
             String url = String.format(GET_TASK_RESULT_URI_TEMPLATE, projectId, taskId);
 
@@ -192,7 +193,7 @@ public class ModerationLongVideoAkskDemo {
             String status = resp.getString("state");
 
             // 如果作业处于非结束状态，则继续执行
-            if (status.equals("PENDING_CREATE") || status.equals("SCHEDULING")
+            if (status.equals("PENDING") || status.equals("SCHEDULING")
                     || status.equals("STARTING") || status.equals("RUNNING")){
                 Thread.sleep(QUERY_JOB_RESULT_INTERVAL);
                 continue;
@@ -204,7 +205,7 @@ public class ModerationLongVideoAkskDemo {
                 aisAccess.delete(url);
                 break;
             } else{
-                JSONObject hostingResult = resp.getJSONObject("hostingResult");
+                JSONObject hostingResult = resp.getJSONObject("hosting_result");
                 String hostingStatus = hostingResult.getString("status");
                 if (hostingStatus.equals("NOT_GENERATED")){
                     Thread.sleep(QUERY_JOB_RESULT_INTERVAL);
