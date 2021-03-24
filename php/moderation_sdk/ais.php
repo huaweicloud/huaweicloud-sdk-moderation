@@ -7,6 +7,9 @@
  * Time: 10:44
  */
 
+// iva 请求域名
+define("IVA_ENDPOINT", "iva.cn-north-4.myhuaweicloud.com");
+
 // token请求域名
 define("IAM_ENPOINT", "iam.myhuaweicloud.com");
 
@@ -25,8 +28,11 @@ define("IMAGE_CONTENT_DETECT", "/v1.0/moderation/image");
 // 文本内容检测服务的uri
 define("MODERATION_TEXT", "/v1.0/moderation/text");
 
-// 视频审核服务的uri
-define("MODERATION_VIDEO", "/v1.0/moderation/video");
+// 长视频审核的uri
+define("MODERATION_LONG_VIDEO", "/v2/%s/services/video-moderation/tasks");
+
+// 长视频审核结果查询的uri
+define("MODERATION_LONG_VIDEO_RESULT", "/v2/%s/services/video-moderation/tasks/%s");
 
 // 图像内容审核批量异步uri
 define("IMAGE_CONTENT_BATCH_JOBS", "/v1.0/moderation/image/batch/jobs");
