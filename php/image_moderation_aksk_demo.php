@@ -17,9 +17,9 @@ $data = file_to_base64($filepath);
 $data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/terrorism.jpg";
 
 // 图片的base64 的方式请求接口
-$result = image_content_aksk($app_key, $app_secret, $data, "", array("politics"), 0);
+$result = image_content_aksk($app_key, $app_secret, $data, "", array("politics"), 0, "default");
 echo $result;
 
 // 图片的osb的url 方式请求接口
-$result = image_content_aksk($app_key, $app_secret, "", $data_url, array("politics"), 0);
+$result = image_content_aksk($app_key, $app_secret, "", $data_url, array("politics"), 0, "default");
 echo $result;

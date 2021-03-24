@@ -20,11 +20,11 @@ demo_data_url = "https://sdk-obs-source-save.obs.cn-north-4.myhuaweicloud.com/te
 
 token.getToken(username, domain_name, password, function (token) {
 
-    content.image_content(token, data, "", ["politics"], "", function (result) {
+    content.image_content(token, data, "", ["politics"], "", "default", function (result) {
         console.log(result);
     });
 
-    content.image_content(token, "", demo_data_url, ["politics"], "", function (result) {
+    content.image_content(token, "", demo_data_url, ["politics"], "", "default", function (result) {
         console.log(result);
     })
 });
