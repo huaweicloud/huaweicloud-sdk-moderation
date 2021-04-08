@@ -19,13 +19,13 @@ if __name__ == '__main__':
     token = get_token(user_name, password, account_name)
 
     # call interface use the local file
-    result = moderation_image(token, encode_to_base64('data/moderation-terrorism.jpg'), url=None,
+    result = moderation_image(token, encode_to_base64('data/moderation-terrorism.jpg'), url='',
                               categories=['porn', 'politics', 'terrorism', 'ad'],
                               threshold=None, moderation_rule="default")
     print(result)
 
     # call interface use the url (token, image, url, threshold=0.95, scene=None)
-    result = moderation_image(token, image="", url=demo_data_url,
+    result = moderation_image(token, image='', url=demo_data_url,
                               categories=['porn', 'politics', 'terrorism', 'ad'],
                               threshold=None, moderation_rule="default")
     print(result)

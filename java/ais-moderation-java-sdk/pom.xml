@@ -8,9 +8,11 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.huawei.apigateway</groupId>
+			<groupId>com.huawei</groupId>
 			<artifactId>java-sdk-core</artifactId>
 			<version>3.0.9</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/java-sdk-core-3.0.9.jar</systemPath>
 		</dependency>
 
 		<dependency>
