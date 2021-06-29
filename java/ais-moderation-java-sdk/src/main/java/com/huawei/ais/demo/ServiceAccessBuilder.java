@@ -48,13 +48,15 @@ public class ServiceAccessBuilder {
 
 	private int retryTimes = 3;
 
+	private boolean sslVerification = true;
+
 	public static ServiceAccessBuilder builder() {
 		return new ServiceAccessBuilder();
 	}
 
 	public AisAccess build() {
 		if (proxy == null) {
-			return new AisAccess(new AuthInfo(endpoint, region, ak, sk), connectionTimeout, connectionRequestTimeout, socketTimeout, retryTimes);
+			return new AisAccess(new AuthInfo(endpoint, region, ak, sk), sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout, retryTimes);
 		} else {
 			return new AisAccessWithProxy(new AuthInfo(endpoint, region, ak, sk), proxy, connectionTimeout, connectionRequestTimeout, socketTimeout, retryTimes);
 		}
@@ -67,6 +69,11 @@ public class ServiceAccessBuilder {
 
 	public  ServiceAccessBuilder sk(String sk) {
 		this.sk = sk;
+		return this;
+	}
+
+	public  ServiceAccessBuilder sslVerification(Boolean sslVerification) {
+		this.sslVerification = sslVerification;
 		return this;
 	}
 

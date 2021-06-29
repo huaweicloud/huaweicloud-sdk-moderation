@@ -24,6 +24,7 @@ public class ModerationLongVideoAkskDemo {
     public static int connectionRequestTimeout = 1000;//连接池获取可用连接超时限制参数
     public static int socketTimeout =  5000;//获取服务器响应数据超时限制参数
     public static int maxRetryTimes =  3; //请求异常的重试次数
+    public static boolean sslVerification = true;
     private static final long QUERY_JOB_RESULT_INTERVAL = 10000L;
     private static final Integer RETRY_MAX_TIMES = 3; // 查询任务失败的最大重试次数
 
@@ -40,7 +41,7 @@ public class ModerationLongVideoAkskDemo {
                 "######"     /* 对应AK的的SK信息 */
         );
 
-       AisAccess aisAccess = new AisAccess(HEC_AUTH, connectionTimeout, connectionRequestTimeout, socketTimeout, maxRetryTimes);
+       AisAccess aisAccess = new AisAccess(HEC_AUTH, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout, maxRetryTimes);
        try {
 
            // 3. 配置视频审核的输入参数(可配置为obs，或url方式)

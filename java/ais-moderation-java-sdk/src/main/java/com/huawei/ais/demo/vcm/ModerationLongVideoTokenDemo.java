@@ -30,6 +30,7 @@ public class ModerationLongVideoTokenDemo {
     public static int socketTimeout =  5000;//获取服务器响应数据超时限制参数
     private static final long QUERY_JOB_RESULT_INTERVAL = 10000L;
     private static final Integer RETRY_MAX_TIMES = 3; // 查询任务失败的最大重试次数
+    private static boolean sslVerification = true;
 
 
     public static void main(String [] args){
@@ -129,7 +130,7 @@ public class ModerationLongVideoTokenDemo {
 
         StringEntity stringEntity = new StringEntity(requestJson.toJSONString(), "utf-8");
 
-        HttpResponse response = HttpClientUtils.post(taskUrl, headers, stringEntity, connectionTimeout, connectionRequestTimeout, socketTimeout);
+        HttpResponse response = HttpClientUtils.post(taskUrl, headers, stringEntity,sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
 
         if (!HttpJsonDataUtils.isOKResponded(response)) {
             System.out.println("Submit the task failed!");
@@ -168,7 +169,7 @@ public class ModerationLongVideoTokenDemo {
         // 构建进行查询的请求链接，并进行轮询查询，由于是异步任务，必须多次进行轮询
         // 直到结果状态为任务已处理结束
         while (true){
-            HttpResponse getResponse = HttpClientUtils.get(url, headers);
+            HttpResponse getResponse = HttpClientUtils.get(url, headers, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
             if (getResponse == null || !HttpJsonDataUtils.isOKResponded(getResponse)) {
                 System.out.println("Get " + url);
                 if (getResponse != null){
@@ -181,7 +182,7 @@ public class ModerationLongVideoTokenDemo {
                     Thread.sleep(QUERY_JOB_RESULT_INTERVAL);
                     continue;
                 }else{
-                    HttpClientUtils.delete(url, headers);
+                    HttpClientUtils.delete(url, headers, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
                     break;
                 }
             }
@@ -200,7 +201,7 @@ public class ModerationLongVideoTokenDemo {
                     || status.equals("ABNORMAL")){
                 System.out.println("Job failed!");
                 System.out.println(JSON.toJSONString(resp, SerializerFeature.PrettyFormat));
-                HttpClientUtils.delete(url, headers);
+                HttpClientUtils.delete(url, headers, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
                 break;
             } else{
                 JSONObject hostingResult = resp.getJSONObject("hosting_result");
@@ -212,7 +213,7 @@ public class ModerationLongVideoTokenDemo {
                     // 任务处理结束，打印结果
                     System.out.println("Job finished!");
                     System.out.println(JSON.toJSONString(resp, SerializerFeature.PrettyFormat));
-                    HttpClientUtils.delete(url, headers);
+                    HttpClientUtils.delete(url, headers, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
                     break;
                 }
 
@@ -282,7 +283,7 @@ public class ModerationLongVideoTokenDemo {
         Header[] headers = new Header[]{new BasicHeader("Content-Type", ContentType.APPLICATION_JSON.toString())};
         StringEntity stringEntity = new StringEntity(requestBody, "utf-8");
 
-        HttpResponse response = HttpClientUtils.post(TOKEN_URL, headers, stringEntity, connectionTimeout,
+        HttpResponse response = HttpClientUtils.post(TOKEN_URL, headers, stringEntity, sslVerification, connectionTimeout,
                 connectionRequestTimeout, socketTimeout);
         if (!HttpJsonDataUtils.isOKResponded(response)) {
             System.out.println("Request body:" + HttpJsonDataUtils.prettify(requestBody));
