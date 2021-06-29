@@ -33,6 +33,7 @@ public class AisAccess extends AccessServiceImpl{
 	public int connectionRequestTimeout = HttpClientUtils.DEFAULT_CONNECTION_REQUEST_TIMEOUT;
 	public int socketTimeout = HttpClientUtils.DEFAULT_SOCKET_TIMEOUT;
 	public int retryTimes = HttpClientUtils.DEFAULT_RETRY_TIMES;
+	public boolean sslVerification = true;
 	public int DEFAULT_MAX_REQUEST_TIME = 10000;
 	
 	public AisAccess(AuthInfo authInfo) {
@@ -40,14 +41,16 @@ public class AisAccess extends AccessServiceImpl{
 		this.authInfo = authInfo;
 	}
 	
-	public AisAccess(AuthInfo authInfo, int connectionTimeout, int connectionRequestTimeout, int socketTimeout, int retryTimes) {
+	public AisAccess(AuthInfo authInfo, Boolean sslVerification, int connectionTimeout, int connectionRequestTimeout, int socketTimeout, int retryTimes) {
 		super(AisAccess.SERVICE_NAME, authInfo.getRegion(), authInfo.getAk(), authInfo.getSk());
 		this.authInfo = authInfo;
-		
+		this.sslVerification = sslVerification;
+
 		this.connectionTimeout = connectionTimeout;
 		this.connectionRequestTimeout = connectionRequestTimeout;
 		this.socketTimeout = socketTimeout;
 		this.retryTimes = retryTimes;
+
 		
 	}
 	
@@ -62,9 +65,13 @@ public class AisAccess extends AccessServiceImpl{
 		return HttpClientUtils.acceptsUntrustedCertsHttpClient(false, null, this.connectionTimeout, this.connectionRequestTimeout, this.socketTimeout);
 	}
 
+	protected CloseableHttpClient getDefaultHttpClient()  throws NoSuchAlgorithmException, KeyManagementException {
+		return HttpClientUtils.getDefaultClient(this.connectionRequestTimeout, this.connectionTimeout, this.socketTimeout);
+	}
+
 	protected boolean useDefaultHttpClient()
 	{
-		return false;
+		return this.sslVerification;
 	}
 
 	public HttpResponse put(String requestUrl, String putBody) {
