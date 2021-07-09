@@ -21,13 +21,13 @@ import java.net.URISyntaxException;
  * 使用Token认证方式访问服务
  */
 public class TokenDemo {
-	private static final String projectName = "cn-north-4"; // 此处，请输入服务的区域信息，目前支持华北-北京(cn-north-4)、华东上海一(cn-east-3)、亚太-新加坡(ap-southeast-3)以及亚太-香港(ap-southeast-1)
+	private static final String projectName = "cn-north-4"; // 此处，请输入服务的区域信息，目前支持华北-北京(cn-north-4)、华东上海一(cn-east-3)、亚太-新加坡(ap-southeast-3)以及中国-香港(ap-southeast-1)
 	private static final String URL_TEMPLATE = ServiceAccessBuilder.getCurrentEndpoint(projectName)+"/v1.0/moderation/image/batch?job_id=%s";
 	private static final long POLLING_INTERVAL = 2000L;
 	private static final Integer RETRY_MAX_TIMES = 3; // 查询任务失败的最大重试次数
-	public static int connectionTimeout = 5000; //连接目标url超时限制参数
-	public static int connectionRequestTimeout = 1000;//连接池获取可用连接超时限制参数
-	public static int socketTimeout =  5000;//获取服务器响应数据超时限制参数
+	public static int connectionTimeout = 10000; //连接目标url超时限制参数
+	public static int connectionRequestTimeout = 5000;//连接池获取可用连接超时限制参数
+	public static int socketTimeout =  20000;//获取服务器响应数据超时限制参数
 	private static boolean sslVerification = true;
 	
 	/**

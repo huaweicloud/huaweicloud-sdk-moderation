@@ -10,11 +10,14 @@ _context = None
 if not ais.AisService.CERTIFICATE_VALIDATION:
     _context = ssl._create_unverified_context()
 
+socket_timeout = ais.AisService.DEFAULT_TIMEOUT
+
 if sys.version_info.major < 3:
     import urllib
     import urllib2
 
-    def request_token(_url, _data, token, timeout=5):
+
+    def request_token(_url, _data, token, timeout=socket_timeout):
         kreq = urllib2.Request(url=_url)
         kreq.add_header('Content-Type', 'application/json')
         kreq.add_header('X-Auth-Token', token)
@@ -50,7 +53,7 @@ if sys.version_info.major < 3:
         resp = None
         status_code = None
         try:
-            r = urllib2.urlopen(kreq, context=_context, timeout=5)
+            r = urllib2.urlopen(kreq, context=_context, timeout=socket_timeout)
 
             #
             # We use HTTPError and URLError，because urllib2 can't process the 4XX &
@@ -69,7 +72,7 @@ if sys.version_info.major < 3:
             resp = r.read()
         return status_code, resp
 
-    def request_aksk(sig, kreq, _url, timeout=5):
+    def request_aksk(sig, kreq, _url, timeout=socket_timeout):
         resp = None
         status_code = None
         try:
@@ -100,7 +103,7 @@ if sys.version_info.major < 3:
         try:
             sig.Sign(kreq)
             req = urllib2.Request(url=_url, headers=kreq.headers)
-            r = urllib2.urlopen(req, context=_context, timeout=5)
+            r = urllib2.urlopen(req, context=_context, timeout=socket_timeout)
 
         #
         # We use HTTPError and URLError，because urllib2 can't process the 4XX &
@@ -127,7 +130,7 @@ else:
     import urllib.request
     from urllib.error import URLError, HTTPError
 
-    socket.setdefaulttimeout(5)
+    socket.setdefaulttimeout(socket_timeout)
 
     def request_token(_url, _data, token):
         _headers = {

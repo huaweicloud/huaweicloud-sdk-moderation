@@ -5,7 +5,7 @@ from moderation_sdk.moderation_image import moderation_image
 from moderation_sdk.utils import init_global_env
 
 if __name__ == '__main__':
-    # Services currently support North China-Beijing(cn-north-4),China East-Shanghai1(cn-east-3), Asia Pacific-Hong Kong(ap-southeast-1)
+    # Services currently support North China-Beijing(cn-north-4),China East-Shanghai1(cn-east-3), CN-Hong Kong(ap-southeast-1)
     init_global_env('cn-north-4')
 
     #
