@@ -141,7 +141,7 @@ public class TokenDemo {
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
 			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
 			System.out.println(response);
-			String content = IOUtils.toString(response.getEntity().getContent());
+			String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
 			System.out.println(content);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,7 +176,7 @@ public class TokenDemo {
 			} else {
 				// 处理服务返回的字符流，输出识别结果。
 				ResponseProcessUtils.processResponseStatus(response);
-				String content = IOUtils.toString(response.getEntity().getContent());
+				String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
 				System.out.println(content);
 			}
 			
@@ -213,7 +213,7 @@ public class TokenDemo {
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
 			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
 			System.out.println(response);
-			String content = IOUtils.toString(response.getEntity().getContent());
+			String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
 			System.out.println(content);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -245,7 +245,7 @@ public class TokenDemo {
 			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
 
 			System.out.println(response);
-			String content = IOUtils.toString(response.getEntity().getContent());
+			String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
 			System.out.println(content);
 			
 			
@@ -276,7 +276,7 @@ public class TokenDemo {
             HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
 
             System.out.println(response);
-            String content = IOUtils.toString(response.getEntity().getContent());
+            String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
             System.out.println(content);
 
 
