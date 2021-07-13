@@ -6,7 +6,7 @@ require "./moderation_sdk/gettoken.php";
 require "./moderation_sdk/image_moderation.php";
 require "./moderation_sdk/utils.php";
 
-// region目前支持华北-北京(cn-north-4)、华东上海一(cn-east-3)、亚太-香港(ap-southeast-1)、亚太-新加坡(ap-southeast-3)
+// region目前支持华北-北京(cn-north-4)、华东上海一(cn-east-3)、中国-香港(ap-southeast-1)、亚太-新加坡(ap-southeast-3)
 init_region($region = 'cn-north-4');
 
 $username = "********";      // 配置用户名
