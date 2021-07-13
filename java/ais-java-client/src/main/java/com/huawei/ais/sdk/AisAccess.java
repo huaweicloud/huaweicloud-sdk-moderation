@@ -131,7 +131,9 @@ public class AisAccess extends AccessServiceImpl{
 
 				URL url = new URL(generateWholeUrl(authInfo.getEndPoint(), requestUrl));
 				HttpMethodName httpMethod = HttpMethodName.GET;
-				response = access(url, httpMethod);
+				Map<String, String> header = new HashMap<String, String>();
+				header.put("Content-Type", ContentType.APPLICATION_JSON.toString());
+				response = access(url, header, httpMethod);
 				int statusCode = response.getStatusLine().getStatusCode();
 				if(!HttpClientUtils.needRetry(statusCode)){
 					break;
@@ -167,7 +169,9 @@ public class AisAccess extends AccessServiceImpl{
 
 				URL url = new URL(generateWholeUrl(authInfo.getEndPoint(), requestUrl));
 				HttpMethodName httpMethod = HttpMethodName.DELETE;
-				response = access(url, httpMethod);
+				Map<String, String> header = new HashMap<String, String>();
+				header.put("Content-Type", ContentType.APPLICATION_JSON.toString());
+				response = access(url, header, httpMethod);
 				int statusCode = response.getStatusLine().getStatusCode();
 				if(!HttpClientUtils.needRetry(statusCode)){
 					break;
