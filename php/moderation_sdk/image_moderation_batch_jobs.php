@@ -197,7 +197,7 @@ function _batch_jobs_aksk($endPoint, $signer, $urls, $categories)
     );
     $curl = $signer->Sign($req);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+    curl_setopt($curl, CURLOPT_TIMEOUT, DEFAULT_TIMEOUT);
 
     // 执行请求信息
     $response = curl_exec($curl);
@@ -235,7 +235,7 @@ function get_result_aksk($endPoint, $signer, $jobId)
     );
     $curl = $signer->Sign($req);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+    curl_setopt($curl, CURLOPT_TIMEOUT, DEFAULT_TIMEOUT);
 
     // 执行请求信息
     $response = curl_exec($curl);

@@ -28,8 +28,8 @@ public class ModerationDistortionCorrectDemo {
 				.ak("######")                       // your ak
 				.sk("######")                       // your sk
 				.region("cn-north-4")               // 内容审核服务目前支持华北-北京(cn-north-4)
-				.connectionTimeout(5000)            // 连接目标url超时限制
-				.connectionRequestTimeout(1000)     // 连接池获取可用连接超时限制
+				.connectionTimeout(10000)            // 连接目标url超时限制
+				.connectionRequestTimeout(5000)     // 连接池获取可用连接超时限制
 				.socketTimeout(20000)               // 获取服务器响应数据超时限制
 				.retryTimes(3)                      // 请求异常时的重试次数
 				.build();

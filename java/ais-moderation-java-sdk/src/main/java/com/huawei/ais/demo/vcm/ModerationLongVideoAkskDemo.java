@@ -20,9 +20,9 @@ import java.io.IOException;
 public class ModerationLongVideoAkskDemo {
     private static final String SUBMIT_TASK_URI = "/v2/%s/services/video-moderation/tasks";
     private static final String GET_TASK_RESULT_URI_TEMPLATE = "/v2/%s/services/video-moderation/tasks/%s";
-    public static int connectionTimeout = 5000; //连接目标url超时限制参数
-    public static int connectionRequestTimeout = 1000;//连接池获取可用连接超时限制参数
-    public static int socketTimeout =  5000;//获取服务器响应数据超时限制参数
+    public static int connectionTimeout = 10000; //连接目标url超时限制参数
+    public static int connectionRequestTimeout = 5000;//连接池获取可用连接超时限制参数
+    public static int socketTimeout =  20000;//获取服务器响应数据超时限制参数
     public static int maxRetryTimes =  3; //请求异常的重试次数
     public static boolean sslVerification = true;
     private static final long QUERY_JOB_RESULT_INTERVAL = 10000L;

@@ -81,7 +81,7 @@ function _moderation_long_video($token, $uri, $requestbody)
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($curl, CURLOPT_NOBODY, FALSE);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+    curl_setopt($curl, CURLOPT_TIMEOUT, DEFAULT_TIMEOUT);
 
     // 执行请求信息
     try{
@@ -120,7 +120,7 @@ function get_result($token, $resultUri)
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl, CURLOPT_HEADER, 0);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+    curl_setopt($curl, CURLOPT_TIMEOUT, DEFAULT_TIMEOUT);
 
     try{
         // 执行请求信息
@@ -234,7 +234,7 @@ function _moderation_long_video_aksk($signer, $taskUri, $requestbody)
     );
     $curl = $signer->Sign($req);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+    curl_setopt($curl, CURLOPT_TIMEOUT, DEFAULT_TIMEOUT);
 
     try{
         // 执行请求信息
@@ -274,7 +274,7 @@ function get_result_aksk($signer, $resultUri)
     );
     $curl = $signer->Sign($req);
     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+    curl_setopt($curl, CURLOPT_TIMEOUT, DEFAULT_TIMEOUT);
 
     try{
         // 执行请求信息

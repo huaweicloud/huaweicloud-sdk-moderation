@@ -21,13 +21,13 @@ import java.net.URISyntaxException;
  * 使用Token认证方式访问服务
  */
 public class TokenDemo {
-	private static final String projectName = "cn-north-4"; // 此处，请输入服务的区域信息，目前支持华北-北京(cn-north-4)、华东上海一(cn-east-3)、亚太-新加坡(ap-southeast-3)以及亚太-香港(ap-southeast-1)
+	private static final String projectName = "cn-north-4"; // 此处，请输入服务的区域信息，目前支持华北-北京(cn-north-4)、华东上海一(cn-east-3)、亚太-新加坡(ap-southeast-3)以及中国-香港(ap-southeast-1)
 	private static final String URL_TEMPLATE = ServiceAccessBuilder.getCurrentEndpoint(projectName)+"/v1.0/moderation/image/batch?job_id=%s";
 	private static final long POLLING_INTERVAL = 2000L;
 	private static final Integer RETRY_MAX_TIMES = 3; // 查询任务失败的最大重试次数
-	public static int connectionTimeout = 5000; //连接目标url超时限制参数
-	public static int connectionRequestTimeout = 1000;//连接池获取可用连接超时限制参数
-	public static int socketTimeout =  5000;//获取服务器响应数据超时限制参数
+	public static int connectionTimeout = 10000; //连接目标url超时限制参数
+	public static int connectionRequestTimeout = 5000;//连接池获取可用连接超时限制参数
+	public static int socketTimeout =  20000;//获取服务器响应数据超时限制参数
 	private static boolean sslVerification = true;
 	
 	/**
@@ -141,7 +141,7 @@ public class TokenDemo {
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
 			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
 			System.out.println(response);
-			String content = IOUtils.toString(response.getEntity().getContent());
+			String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
 			System.out.println(content);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -176,7 +176,7 @@ public class TokenDemo {
 			} else {
 				// 处理服务返回的字符流，输出识别结果。
 				ResponseProcessUtils.processResponseStatus(response);
-				String content = IOUtils.toString(response.getEntity().getContent());
+				String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
 				System.out.println(content);
 			}
 			
@@ -213,7 +213,7 @@ public class TokenDemo {
 			StringEntity stringEntity = new StringEntity(json.toJSONString(), "utf-8");
 			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
 			System.out.println(response);
-			String content = IOUtils.toString(response.getEntity().getContent());
+			String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
 			System.out.println(content);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -245,7 +245,7 @@ public class TokenDemo {
 			HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
 
 			System.out.println(response);
-			String content = IOUtils.toString(response.getEntity().getContent());
+			String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
 			System.out.println(content);
 			
 			
@@ -276,7 +276,7 @@ public class TokenDemo {
             HttpResponse response = HttpClientUtils.post(url, headers, stringEntity, sslVerification, connectionTimeout, connectionRequestTimeout, socketTimeout);
 
             System.out.println(response);
-            String content = IOUtils.toString(response.getEntity().getContent());
+            String content = IOUtils.toString(response.getEntity().getContent(), "utf-8");
             System.out.println(content);
 
 
@@ -400,9 +400,9 @@ public class TokenDemo {
 		System.out.println(token);
 		
 		// 设置三个超时参数限制连接超时，分别如下
-		connectionTimeout = 5000; //连接目标url超时限制
-		connectionRequestTimeout = 1000;//连接池获取可用连接超时限制
-		socketTimeout = 5000;//获取服务器响应数据超时限制
+		connectionTimeout = 10000; //连接目标url超时限制
+		connectionRequestTimeout = 5000;//连接池获取可用连接超时限制
+		socketTimeout = 20000;//获取服务器响应数据超时限制
 		
 		//运行清晰度检测服务
 		//requestModerationClarityBase64(token, "data/moderation-clarity-detect.jpg");
