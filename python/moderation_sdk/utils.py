@@ -258,9 +258,7 @@ _ENDPOINT = {
     'iva': {
         'cn-north-1':'iva.cn-north-1.myhuaweicloud.com',
         'cn-north-4':'iva.cn-north-4.myhuaweicloud.com',
-        'ap-southeast-1':'iva.ap-southeast-1.myhuaweicloud.com',
-        'cn-east-3':'iva.cn-east-3.myhuaweicloud.com',
-        'ap-southeast-3':'iva.ap-southeast-3.myhuaweicloud.com'
+        'cn-east-3':'iva.cn-east-3.myhuaweicloud.com'
     }
 }
 
