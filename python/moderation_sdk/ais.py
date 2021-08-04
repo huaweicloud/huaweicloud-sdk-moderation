@@ -14,6 +14,7 @@ class ModerationURI:
 
 class AisService:
     MODERATION_SERVICE = 'moderation'
+    IVA_SERVICE = 'iva'
     REGION_MSG = 'region_name'
     CERTIFICATE_VALIDATION = True
     DEFAULT_TIMEOUT = 20
